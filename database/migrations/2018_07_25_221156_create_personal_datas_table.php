@@ -21,11 +21,7 @@ class CreatePersonalDatasTable extends Migration
             $table->integer('birthday')->nullable();
             $table->string('CURP')->nullable();
             $table->string('civil_status')->nullable();
-            $table->string('religion')->nullable();
-            $table->string('suffering')->nullable();
-            $table->string('blood_type')->nullable();
-            $table->string('social_secure')->nullable();
-            $table->string('height')->nullable();
+            $table->string('religion')->nullable();                        
             $table->string('economic_level')->nullable();
             $table->timestamps();
         });

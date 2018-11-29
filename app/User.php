@@ -48,4 +48,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Allergy', 'user_id', 'id');
     }
+
+    public function weights()
+    {
+        return $this->hasMany('App\Weight', 'user_id', 'id');
+    }
 }

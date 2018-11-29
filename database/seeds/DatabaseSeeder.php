@@ -15,17 +15,19 @@ class DatabaseSeeder extends Seeder
         // $this->call(UsersTableSeeder::class);
 
         DB::table('users')->insert([
-            'name' => 'Admin',
+            'name' => 'JESUS FCO',
             'email' => 'jfcr@live.com',
             'password' => bcrypt('secret'),
-            'patern' => 'Admin',
-            'matern' => 'Admin',
+            'patern' => 'RODRIGUEZ',
+            'matern' => ' ',
             'gender' => 1,
-            'address_id' => 0,
-            'personal_data_id' => 0,
+            'address_id' => 1,
+            'personal_data_id' => 1,
             'user_type' => 4,
 
         ]);
 
+        DB::table('addresses')->insert([ ]);
+        DB::table('personal_datas')->insert([ ]);        
     }
 }

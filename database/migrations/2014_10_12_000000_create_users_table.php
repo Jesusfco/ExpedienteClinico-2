@@ -26,6 +26,8 @@ class CreateUsersTable extends Migration
             $table->integer('address_id');
             $table->integer('personal_data_id');
             $table->integer('medical_data_id')->nullable();
+            $table->integer('expedient_id')->nullable();
+            $table->integer('born_expedient_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

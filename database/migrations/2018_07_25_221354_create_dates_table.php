@@ -17,7 +17,7 @@ class CreateDatesTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('medic_id');
-            $table->string('date');
+            $table->string('subject')->nullable();
             $table->string('hour');
             $table->string('room');
             $table->timestamps();
