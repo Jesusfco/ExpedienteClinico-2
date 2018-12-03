@@ -59,25 +59,32 @@ class UsersController extends Controller
         $address = new Address();
         $address->save();
 
+        $born = new BornExpedient();
+        $born->save();
+
+        $expedient = new Expedient();
+        $expedient->save();
+
         $user->address_id = $address->id;
         $user->personal_data_id = $personal->id;
+        $user->expedient_id = $expedient->id;
+        $user->born_expedient_id = $born->id;
         $user->save();
 
-        if($user->user_type == 3) {
+        //if($user->user_type == 3) {            
 
-            $user->speciality_id = $r->speciality_id;
+        $med = new MedicalData();
+        $med->cedula = $r->speciality;
+        $med->sub_speciality = $r->sub_speciality;
+        $med->cedula = $r->cedula;
+        $med->save();
 
-            $med = new MedicalData();
-            $med->sub_speciality = $r->sub_speciality;
-            $med->cedula = $r->cedula;
-            $med->save();
+        $user->medical_data_id = $med->id;
+        $user->save();
 
-            $user->medical_data_id = $med->id;
-            $user->save();
+        //}
 
-        }
-
-        return redirect('app/users');
+        return redirect('app/users')->with('msj', 'EXITO Nuevo usuario ' . $user->fullName() . ' agregado con exito.' );
 
     }
 

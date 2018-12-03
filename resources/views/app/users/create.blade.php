@@ -1,5 +1,7 @@
 @extends('layouts.aplication')
 
+@section('title', 'Crear Usuario') 
+
 @section('content')
 
 
@@ -66,12 +68,7 @@
 
                 <div v-if="user_type == 3">
                     <label>Especialidad:</label>
-                    <select id="inputState" class="form-control" name="speciality_id">
-                        <option value="1">UROLOGIA</option>
-                        <option value="3">NEUROLOGIA</option>
-                        <option value="2">CARDIOLOGIA</option>
-                        
-                    </select>
+                    <input id="inputState" class="form-control" name="speciality" required>                        
                 </div>
 
                 <div v-if="user_type == 3">
@@ -105,8 +102,7 @@
     var app = new Vue({
         el: '#app',
 
-        data: {
-            message: 'Hello Vue!',
+        data: {            
             user_type: 1,
 
             }

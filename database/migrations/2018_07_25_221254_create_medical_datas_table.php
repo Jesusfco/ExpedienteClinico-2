@@ -15,6 +15,7 @@ class CreateMedicalDatasTable extends Migration
     {
         Schema::create('medical_datas', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('speciality')->nullable();
             $table->string('sub_speciality')->nullable();
             $table->string('cedula')->nullable();
             $table->timestamps();

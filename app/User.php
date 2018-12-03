@@ -29,6 +29,10 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function fullName() { 
+        return $this->name . ' ' . $this->patern . ' ' . $this->matern;
+    }
+
     public function address()
     {
         return $this->hasOne('App\Address', 'id', 'address_id');

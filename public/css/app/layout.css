@@ -1,0 +1,12 @@
+.navegations-left {
+    position: fixed;
+    width: 220px;
+    background: black;
+    height: 100vh;
+    top: 0;
+}
+
+.content {
+    width: 100%;
+    padding-left: 225px;
+}
