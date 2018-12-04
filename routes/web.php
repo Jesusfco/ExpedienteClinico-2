@@ -17,8 +17,20 @@ Route::post('app/users/create', 'UsersController@store');
 
 Route::get('app/users/show/{id}', 'UsersController@show');
 Route::get('app/users/alergias/{id}', 'UsersController@allergies');
-Route::get('app/users/edit/{id}', 'UsersController@edit');
-Route::post('app/users/edit/{id}', 'UsersController@update');
+Route::get('app/users/edit/usuario/{id}', 'UsersController@editUsuario');
+Route::post('app/users/edit/usuario/{id}', 'UsersController@updateUsuario');
+
+Route::get('app/users/edit/direccion/{id}', 'UsersController@editDireccion');
+Route::post('app/users/edit/direccion/{id}', 'UsersController@updateDireccion');
+
+Route::get('app/users/edit/personal/{id}', 'UsersController@editPersonal');
+Route::post('app/users/edit/personal/{id}', 'UsersController@updatePersonal');
+
+Route::get('app/users/edit/expediente/{id}', 'UsersController@editExpediente');
+Route::post('app/users/edit/expediente/{id}', 'UsersController@updateExpediente');
+
+Route::get('app/users/edit/nacimiento/{id}', 'UsersController@editNacimiento');
+Route::post('app/users/edit/nacimiento/{id}', 'UsersController@updateNacimiento');
 
 Route::get('app/users/alergias/{id}/get', 'UsersController@getAllergies');
 Route::post('app/users/createAllergy', 'UsersController@storeAllergy');

@@ -10,9 +10,11 @@ use App\MedicalData;
 use App\Allergy;
 use App\Date;
 use App\Receipt;
+use App\BornExpedient;
+use App\Expedient;
+use App\Weight;
 
-class UsersController extends Controller
-{
+class UsersController extends Controller {
 
     public function __construct() {
         $this->middleware('Doctor');   
@@ -88,23 +90,21 @@ class UsersController extends Controller
 
     }
 
-    public function  edit($id) {
+    public function  editUsuario($id) {
         
-        $user = User::find($id);
-
-        $user->address;
-        $user->personal;
-        $user->medical;
+        $user = User::find($id);        
         return view('app/users/edit')->with('user', $user);
 
     } 
 
-    public function update(Request $r, $id) {
+    public function updateUsuario(Request $r, $id) {
 
         $this->validate($r, [
             'email' => 'required',
             'name' => 'required',
         ]);
+
+        // return Request::all();
 
         $user = User::find($id);
 
@@ -120,57 +120,112 @@ class UsersController extends Controller
         }
         
         $user->save();
+                                   
+        return back()->with('msj', 'Usuario Actualizado Correctamente');
 
-        if($user->user_type < 4) {
-            
-            $address = Address::find($user->address_id);
-            $personal = PersonalData::find($user->personal_data_id);
+    }
 
-            $address->street = $r->street;
-            $address->colony = $r->colony;
-            $address->city = $r->city;
-            $address->state = $r->state;
-            $address->house_number = $r->house_number;
-            $address->house_number_int = $r->house_number_int;
-            $address->CP = $r->CP;
-            $address->save();
+    public function editDireccion($id) {
+        $user = User::find($id);        
+        return view('app/users/direction')->with('user', $user);
+    }
 
-            $personal->phone = $r->phone;
-            $personal->phone2 = $r->phone2;
-            $personal->nacionality = $r->nacionality;
-            $personal->birthday = $r->birthday;
-            $personal->CURP = $r->CURP;
-            $personal->civil_status = $r->civil_status;
-            $personal->occupation = $r->occupation;
-            $personal->religion = $r->religion;
-            $personal->suffering = $r->suffering;
-            $personal->blood_type = $r->blood_type;
-            $personal->social_secure = $r->social_secure;
-            $personal->height = $r->height;
-            $personal->economic_level = $r->economic_level;
-            $personal->save();
+    public function editPersonal($id) {
+        $user = User::find($id);        
+        return view('app/users/personal')->with('user', $user);
+    }
+
+    public function editExpediente($id) {
+        $user = User::find($id);        
+        return view('app/users/expediente')->with('user', $user);
+    }
+
+    public function editNacimiento($id) {
+        $user = User::find($id);        
+        return view('app/users/born')->with('user', $user);
+    }
+
+    public function updateDireccion(Request $r, $id) {
+        $user = User::find($id);
+        $address = Address::find($user->address_id);        
+
+        $address->street = $r->street;
+        $address->colony = $r->colony;
+        $address->city = $r->city;
+        $address->state = $r->state;
+        $address->house_number = $r->house_number;
+        $address->house_number_int = $r->house_number_int;
+        $address->CP = $r->CP;
+        $address->save();
+
+        return back()->with('msj', 'Direccion actualizada');
+    }
+
+    public function updatePersonal(Request $r, $id) {
+
+        $user = User::find($id);
+        $personal = PersonalData::find($user->personal_data_id);
+
+        $personal->phone = $r->phone;
+        $personal->phone2 = $r->phone2;
+        $personal->nacionality = $r->nacionality;
+        $personal->birthday = $r->birthday;
+        $personal->CURP = $r->CURP;
+        $personal->civil_status = $r->civil_status;
+        $personal->occupation = $r->occupation;
+        $personal->religion = $r->religion;        
+        $personal->economic_level = $r->economic_level;
+
+        $personal->save();
+
+    }
+
+    public function updateExpediente(Request $r, $id) {
+
+        $user = User::find($id);
+
+        $expedient = Expedient::find($user->expedient_id);
+
+        if($expedient->weight != $r->weight && $r->weight != NULL) {
+
+            $expedient->weight = $r->weight;
+            $w = new Weight();
+            $w->user_id = $user->id;
+            $w->weight = $r->weight;
+            $w->save();
 
         }
+        $expedient->height = $r->height;
+        $expedient->blood_type = $r->blood_type;
+        $expedient->antecedentes_heredo_familiares = $r->antecedentes_heredo_familiares;
+        $expedient->antecedentes_personales_patologicos = $r->antecedentes_personales_patologicos;
+        $expedient->antecedentes_personales_no_patologicos = $r->antecedentes_personales_no_patologicos;
+        $expedient->padecimientos_actuales = $r->padecimientos_actuales;
+        $expedient->save();
 
-        if($user->user_type == 3) {
+        return back()->with('msj', 'Expediente Actualizado Correctamente');
 
-            $med = MedicalData::find($user->medical_data_id);
+    }
 
-            if(!isset($med->cedula)) {
-                $med = new MedicalData();
-            }
-            $med->sub_speciality = $r->sub_speciality;
-            $med->cedula = $r->cedula;
-            $med->save();
+    public function updateNacimiento(Request $r, $id) {
 
-            $user->medical_data_id = $med->id;
-            $user->speciality_id = $r->speciality_id;
-            $user->save();
+        $user = User::find($id);
 
-        }
+        $born = BornExpedient::find($user->born_expedient_id);
+        $born->edad_madre = $r->edad_madre;    
+        $born->tipo_nacimiento = $r->tipo_nacimiento;
+        $born->llanto_inmediato = $r->llanto_inmediato;
+        $born->APGAR = $r->APGAR;
+        $born->malformaciones = $r->malformaciones;
+        $born->sangre_criogena_cordon = $r->sangre_criogena_cordon;
+        $born->peso = $r->peso;
+        $born->talla = $r->talla;
+        $born->complicaciones_embarazo = $r->complicaciones_embarazo;
+        $born->no_embarazo = $r->no_embarazo;
 
-        return back()->with('msj', 'Usuario Actualizado');
+        $born->save();
 
+        return back()->with('msj', 'Expediente de Nacimiento Actualizado Correctamente');
     }
 
     public function allergies($id) {

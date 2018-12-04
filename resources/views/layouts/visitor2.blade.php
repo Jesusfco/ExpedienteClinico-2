@@ -1,10 +1,10 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>HOSPITAL MUÑOA</title>
+		<title>TecnoMedics</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/index/css/main.css" />
+		<link rel="stylesheet" href="{{ url('assets/index/css/main.css')}}" />
 	</head>
 	<body class="landing is-preload">
 
@@ -12,28 +12,28 @@
 
                     <!-- Header -->
                     <header id="header" >
-                            <h1><a href="/">HOSPITAL</a> PARA EL BIEN DE TU SALUD</h1>
+                            <h1><a href="{{url('/')}}">TECNOMEDICS</a> Revolucionando tu salud</h1>
                             <nav id="nav">
                                 <ul>
-                                    <li><a href="/">INICIO</a></li>
+                                    <li><a href="{{ url('/')}}">INICIO</a></li>
                                     <li>
                                         <a href="#" class="icon fa-angle-down">Menu</a>
                                         <ul>
                                             <li><a href="quienes">Quienes Somos</a></li>
                                             <li><a href="contacto">Contacto</a></li>
-                                            <li><a href="especialidades">Especialidades</a></li>
+                                            {{-- <li><a href="especialidades">Especialidades</a></li>
                                             <li>
                                                 <a href="ubicacion">Ubicación</a>
-                                                {{-- <ul>
+                                                <ul>
                                                     <li><a href="#">Option One</a></li>
                                                     <li><a href="#">Option Two</a></li>
                                                     <li><a href="#">Option Three</a></li>
                                                     <li><a href="#">Option Four</a></li>
-                                                </ul> --}}
-                                            </li>
+                                                </ul> 
+                                            </li> --}}
                                         </ul>
                                     </li>
-                                    <li><a href="login" class="button">Accesar</a></li>
+                                    <li><a href="{{ url('login')}}" class="button">Accesar</a></li>
                                 </ul>
                             </nav>
                         </header>
@@ -62,13 +62,13 @@
             </div>
 
 <!-- Scripts -->
-<script src="assets/index/js/jquery.min.js"></script>
-<script src="assets/index/js/jquery.dropotron.min.js"></script>
-<script src="assets/index/js/jquery.scrollex.min.js"></script>
-<script src="assets/index/js/browser.min.js"></script>
-<script src="assets/index/js/breakpoints.min.js"></script>
-<script src="assets/index/js/util.js"></script>
-<script src="assets/index/js/main.js"></script>
+<script src="{{ url('assets/index/js/jquery.min.js') }}"></script>
+<script src="{{ url('assets/index/js/jquery.dropotron.min.js')}}"></script>
+<script src="{{ url('assets/index/js/jquery.scrollex.min.js')}}"></script>
+<script src="{{ url('assets/index/js/browser.min.js')}}"></script>
+<script src="{{ url('assets/index/js/breakpoints.min.js')}}"></script>
+<script src="{{ url('assets/index/js/util.js')}}"></script>
+<script src="{{ url('assets/index/js/main.js')}}"></script>
 
 </body>
 </html>

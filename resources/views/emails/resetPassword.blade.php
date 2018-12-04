@@ -7,7 +7,7 @@
     <title></title>
 </head>
 <body>
-    <p>Haz click en el siguiente enlace para restaurar tu contraseña 
+    <p>TECNOMEDICS Recupera tu contraseña en el siguiente link
         <a href="{{ url('resetPassword/'. $token)}}">RESTAURAR</a></p>
 </body>
 </html>

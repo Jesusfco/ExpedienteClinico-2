@@ -48,6 +48,16 @@ class User extends Authenticatable
         return $this->hasOne('App\MedicalData', 'id', 'medical_data_id');
     }
 
+    public function expedient()
+    {
+        return $this->hasOne('App\Expedient', 'id', 'expedient_id');
+    }
+
+    public function born()
+    {
+        return $this->hasOne('App\BornExpedient', 'id', 'born_expedient_id');
+    }
+
     public function allergies()
     {
         return $this->hasMany('App\Allergy', 'user_id', 'id');

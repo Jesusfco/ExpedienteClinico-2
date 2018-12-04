@@ -1,54 +1,41 @@
-@extends('layouts.app')
+@extends('layouts.visitor2')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Actualiza tu contraseña</div>
 
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="">
-                        {{ csrf_field() }}
-
-                        
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">Correo</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ $email or old('email') }}" disabled>
-
-                               
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Nueva contraseña</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" pattern=".{5,}"   required title="5 caracteres minimo" focus>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                       
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Resetear contraseña
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+<br><br>
+<section id="main" class="container medium">
+	<header>
+		<h2>Recupera tu contraseña</h2>
+		<p>Escribe tu nueva contraseña</p>
+	</header>
+	<div class="box">
+        
+		<form method="post" action="">
+                {{ csrf_field() }}
+			<div class="row gtr-50 gtr-uniform">
+				<div class="col-6 col-12-mobilep">
+                    <label>Correo</label>
+                    <input style="background: gray" type="email" name="email" id="nombre"  value="{{ $email or old('email') }}" disabled>
+                    
+				</div>
+				
+				
+				<div class="col-6 col-12-mobilep">
+                    <label>Nueva Contraseña</label>
+                    <input type="password" name="password" id="nombre" value="{{ old('email') }}" placeholder="*******" required/>					
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
+                
+                <div class="col-12">
+                    <ul class="actions special">
+                        <button class="button fit"  id="Send">Resetear Contraseña</button>
+                    </ul>
+                </div>
+
+			</div>
+        </form>
+        <a href="login">Inicia Sesión</a>
+	</div>
+</section>
+
+
 @endsection

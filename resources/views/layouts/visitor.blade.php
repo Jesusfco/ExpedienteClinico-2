@@ -15,7 +15,7 @@
                     
 
                         <header id="header" class="alt">
-                            <h1><a href="/">HOSPITAL</a> PARA EL BIEN DE TU SALUD</h1>
+                            <h1><a href="/">TECNOMEDICS</a> Revolucionando tu salud</h1>
                             <nav id="nav">
                                 <ul>
                                     <li><a href="/">INICIO</a></li>

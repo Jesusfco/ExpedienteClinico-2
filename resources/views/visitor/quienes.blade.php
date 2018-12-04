@@ -2,29 +2,34 @@
 
 @section('content')
 
+<!-- Main -->
+<br><br><br>
 <section id="main" class="container">
-
-	<br><br>
+		<header>
+			<h2>¿Quienes somos?</h2>
+			<p>Tecnologia y salud para todos</p>
+		</header>
 		<div class="box">
-				<h2>¿QUIENES SOMOS?</h2>
-			<p>SOMOS CALIDEZ</p>
-			<span class="image featured"><img src="images/index/medicos.jpg" alt="" /></span>
-			<h3>SOMOS INNOVACIÓN</h3>
-			<p>Cada elemento de servicio y recurso humano se complementan para crear día a día la satisfacción de garantizar que somos el mejor sanatorio de Tuxtla Gutiérrez, Chiapas.</p>
-			
-	   
+			<span class="image featured"><img src="images/pic01.jpg" width="100%" /></span>
+			<h3>MISION</h3>
+			<p>“TecnoMedics es una organización prestadora de servicios de salud, interesada en el desarrollo,
+motivación y compromiso de su recurso humano, que ofrece a sus pacientes un servicio de calidad y
+seguridad a través de equipo médico de alta tecnología y sobre todo calidez humana”.</p>
 			<div class="row">
 				<div class="row-6 row-12-mobilep">
-					<h3>SOMOS CALIDAD</h3>
-					<p>Nuestro principal objetivo es superar las expectativas que tienes depositadas en nosotros.
-El Sanatorio Múñoa plasma este objetivo en la Política de Calidad y Seguridad Clínica y cada año elaboramos un Plan de Calidad donde especificamos las acciones a emprender para alcanzar los resultados planificados en materia de calidad y seguridad y la mejora continua.</p>
+					<h3>VISION</h3>
+					<p>“Ser reconocido como uno de los modelos hospitalarios de mayor calidad asistencial y humanitaria en América”.</p>
 				</div>
 				<div class="row-6 row-12-mobilep">
-					<h3>SOMOS RECONOCIDOS</h3>
-					<p>Somos reconocidos por brindar un buen servicio a la salud de nuestros pacientes, en toda la region del sur este.</p>
+					<h3>VALORES</h3>
+					<p>“Calidad con trato humano”.</p>
+					<p>“Espíritu de servicio”.</p>
+					<p>“Compromiso”.</p>
+
 				</div>
 			</div>
 		</div>
 	</section>
+
 
 @endsection				
