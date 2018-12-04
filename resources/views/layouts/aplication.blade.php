@@ -17,40 +17,40 @@
 </head>
 <body>
   
-    <div>
+    
         <div class="navegations-left">
-        <img src="{{ url('img/logo.png')}}">
-                <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            <li><a href="{{ url('login') }}">Login</a></li>
-                            {{-- <li><a href="{{ route('register') }}">Register</a></li> --}}
-                        @else
+            <img src="{{ url('img/logo.png')}}">
+            <ul class="nav navbar-nav navbar-right">
+            <!-- Authentication Links -->
+            @if (Auth::guest())
+                <li><a href="{{ url('login') }}">Login</a></li>
+                {{-- <li><a href="{{ route('register') }}">Register</a></li> --}}
+            @else
 
-                        @if(Auth::user()->user_type == 1)
-                            <li><a href="{{ url('app/misCitas')}}">MIS CITAS</a></li>
-                            <li><a href="{{ url('app/misRecetas')}}">MIS RECETAS</a></li>
-                        @endif
+            @if(Auth::user()->user_type == 1)
+                <li><a href="{{ url('app/misCitas')}}">MIS CITAS</a></li>
+                <li><a href="{{ url('app/misRecetas')}}">MIS RECETAS</a></li>
+            @endif
 
-                        @if(Auth::user()->user_type > 2)
-                            <li><a href="{{ url('app/citas')}}">Citas</a></li>
-                            <li><a href="{{ url('app/users')}}">Usuarios</a></li>                            
-                            <li><a href="{{ url('app/recetas')}}">Recetas</a></li>
-                        @endif
+            @if(Auth::user()->user_type > 2)
+                <li><a href="{{ url('app/citas')}}">Citas</a></li>
+                <li><a href="{{ url('app/users')}}">Usuarios</a></li>                            
+                <li><a href="{{ url('app/recetas')}}">Recetas</a></li>
+            @endif
 
-                        @if(Auth::user()->user_type == 2)
-                            <li><a href="{{ url('app/citas')}}">Citas</a></li>
-                        @endif
-                            <li><a href="{{ url('logout') }}">Salir</a></li>
-                            
-                        @endif
-                    </ul>
-        <div>
+            @if(Auth::user()->user_type == 2)
+                <li><a href="{{ url('app/citas')}}">Citas</a></li>
+            @endif
+                <li><a href="{{ url('logout') }}">Salir</a></li>
+                
+            @endif
+        </ul>
+    </div>
         <div class="content">
-                @yield('content')
+            @yield('content')
         </div>
 
-    </div>
+    
 
                     <!-- Right Side Of Navbar -->
                     

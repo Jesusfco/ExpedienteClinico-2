@@ -5,11 +5,11 @@
 @section('content')
 
 
-    <div class="panel-heading">Usuarios</div>
+    <h1>Usuarios</h2>
 
     <div class="panel-body">
 
-    <a href="{{ url('app/users/create') }}"> <button type="button" class="btn btn-success">Crear Usuario</button>
+    <a href="{{ url('app/users/create') }}"> <button type="button" class="button is-info">Crear Usuario</button>
             </a>
 
         <form class="form-horizontal" method="GET" action="">
@@ -58,7 +58,7 @@
                     @endif
 
                     <td>
-                            <a href="{{ url('app/users/edit/' . $user->id ) }}"><button type="button" class="btn btn-primary btn-sm">Modificar</button></a>
+                            <a href="{{ url('app/users/edit/' . $user->id ) }}"><button type="button" class="button is-">Modificar</button></a>
                             @if($user->user_type == 1)
                             <a href="{{ url('app/users/alergias/' . $user->id ) }}"><button type="button" class="btn btn-secondary btn-sm">Alergias</button></a>
                             @endif

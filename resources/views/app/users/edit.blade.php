@@ -3,9 +3,10 @@
 
 @section('content')
 
-<form  method="POST" action="" id="app">
-    <div class="panel-heading">Editar Usuario</div>
+<h1>Editar Usuario</h1>
 
+<form  method="POST" action="" id="app">
+    
     <div class="panel-body">
 
   
@@ -13,58 +14,58 @@
         
             {{ csrf_field() }}
 
-            <div class="form-group">
-                <label >Nombre</label>
-                <input type="text" class="form-control" name="name"  placeholder="PEPE" value="{{$user->name }}" required>
+            
+            <div class="field">
+                <label class="label">Nombre</label>
+                <div class="control">
+                <input type="text" class="input" name="name"  value="{{$user->name }}" required>
+            </div>
+            <div class="field">
+                <label class="label">Apellido Paterno</label>
+                <div class="control">
+                <input type="text" class="input"  name="patern" value="{{ $user->patern }}">
             </div>
 
-            <div class="form-group">
-                <label>Apellido Paterno</label>
-                <input class="form-control" type="text"  name="patern" value="{{ $user->patern }}">
+            <div class="field">
+                <label class="label">Apellido Materno</label>
+                <div class="control">
+                <input type="text" class="input"  name="matern" value="{{ $user->matern }}">
             </div>
 
-            <div class="form-group">
-                <label>Apellido Materno</label>
-                <input class="form-control" type="text"  name="matern" value="{{ $user->matern }}">
+            <div class="field">
+                <label class="label">Correo</label>
+                <div class="control">
+                <input type="email" class="input"  name="email" value="{{ $user->email }}" required> 
             </div>
 
-            <div class="form-group">
-                <label>Correo</label>
-                <input class="form-control" type="email" name="email" value="{{ $user->email }}" required> 
-
-               
-
+            <div class="field">
+                <label class="label">Contraseña</label>
+                <div class="control">
+                <input type="text" class="input" name="password"> 
             </div>
 
-            <div class="form-group">
-                <label>Contraseña</label>
-                <input class="form-control" type="password" name="password"> 
-            </div>
-
-            <div class="form-group">
-
-                <div>
-                    <label>Sexo</label>
-                    <select id="inputState" class="form-control" name="gender" v-model="gender">
-                        <option value="1">Masculino</option>
-                        <option value="2">Femenino</option>
-                    </select>
+            <div class="field">                
+                <label class="label">Sexo:</label>
+                <div class="select">
+                <select id="inputState" name="gender" v-model="gender">
+                    <option value="1">Masculino</option>
+                    <option value="2">Femenino</option>
+                </select>
                 </div>
+            </div>
 
-                <div>
-                    <label>Tipo de Usuario:</label>
-                    <select id="inputState" class="form-control" name="user_type" v-model="user_type">
+           <div class="field">                
+            <label class="label">Tipo de Usuario:</label>
+            <div class="select">
+            <select id="inputState" class="select"  name="user_type" v-model="user_type">
                         <option value="1">Paciente</option>
                         <option value="2">Enfermera</option>
                         <option value="3">Médico</option>
                         <option value="4">Administrador</option>
-                    </select>
-                </div>
-                    
+                    </select>       
+            </div>                             
             </div>
-
-        
-        <input type="hidden" value="{{ $user->speciality_id }}" id="2">
+                
         <input type="hidden" value="{{ $user->user_type }}" id="4">
         <input type="hidden" value="{{ $user->gender }}" id="5">
         @if($user->user_type == 3)
@@ -82,19 +83,24 @@
             </select>
         </div>
 
-        <div v-if="user_type == 3">
-            <label>Cedula:</label>
-            <input class="form-control" name="cedula" type="text" v-model="cedula">
+        <div class="control" v-if="user_type == 3">
+            <label>Especialidad:</label>
+            <input class="input" name="cedula" type="text" value="{{ $user->speciality }}" v-model="cedula">
         </div>
 
-        <div v-if="user_type == 3">
+        <div class="control" v-if="user_type == 3">
+            <label>Cedula:</label>
+            <input class="input" name="cedula" type="text" v-model="cedula">
+        </div>
+
+        <div class="control" v-if="user_type == 3">
             <label>Sub Especialidad:</label>
-            <input class="form-control" name="sub_speciality" type="text" v-model="sub_speciality">
+            <input class="input" name="sub_speciality" type="text" v-model="sub_speciality">
         </div>
                 
             <br>
 
-        <button type="submit" class="btn btn-primary btn-lg btn-block">Editar</button>
+        <button type="submit" class="button is-success">Editar</button>
 
         
 
@@ -224,7 +230,7 @@
             </select>
         </div>
 
-        <button type="submit" class="btn btn-primary btn-lg btn-block">Editar</button>
+        <button type="submit" class="button is-success">Editar</button>
 
     </div>
 
@@ -245,7 +251,7 @@
             message: 'Hello Vue!',
             user_type: null,
             cedula: null,
-            speciality_id: null,
+            
             sub_speciality: null,
             gender: null,
 
@@ -259,8 +265,7 @@
                     app.gender = document.getElementById('5').value;
 
                     if(app.user_type == 3) {
-                        app.cedula = document.getElementById('1').value;
-                        app.speciality_id = document.getElementById('2').value;
+                        app.cedula = document.getElementById('1').value;                        
                         app.sub_speciality = document.getElementById('3').value;
                     }
                     

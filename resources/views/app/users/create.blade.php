@@ -5,7 +5,7 @@
 @section('content')
 
 
-    <div class="panel-heading">Crear Usuario</div>
+    <h1>Crear Usuario</h1>
 
     <div class="panel-body" id="app">
 
@@ -14,24 +14,24 @@
         <form  method="POST" action="" >
             {{ csrf_field() }}
 
-            <div class="form-group">
-                <label >Nombre</label>
-                <input type="text" class="form-control" name="name"  placeholder="PEPE" value="{{ old('name') }}" required>
+            <div class="control">
+                <label class="label" >Nombre</label>
+                <input type="text" class="input" name="name"  value="{{ old('name') }}" required>
             </div>
 
-            <div class="form-group">
-                <label>Apellido Paterno</label>
-                <input class="form-control" type="text"  name="patern" value="{{ old('patern') }}">
+            <div class="control">
+                <label class="label">Apellido Paterno</label>
+                <input class="input" type="text"  name="patern" value="{{ old('patern') }}">
             </div>
 
-            <div class="form-group">
-                <label>Apellido Materno</label>
-                <input class="form-control" type="text"  name="matern" value="{{ old('matern') }}">
+            <div class="control">
+                <label class="label">Apellido Materno</label>
+                <input class="input" type="text"  name="matern" value="{{ old('matern') }}">
             </div>
 
-            <div class="form-group">
-                <label>Correo</label>
-                <input class="form-control" type="email" name="email" value="{{ old('email') }}" required> 
+            <div class="control">
+                <label class="label">Correo</label>
+                <input class="input" type="email" name="email" value="{{ old('email') }}" required> 
 
                 @if ($errors->has('email'))
                     <span class="help-block">
@@ -41,24 +41,24 @@
 
             </div>
 
-            <div class="form-group">
-                <label>Contraseña</label>
-                <input class="form-control" type="password" name="password" value="{{ old('password') }}"> 
+            <div class="control">
+                <label class="label">Contraseña</label>
+                <input class="input" type="password" name="password" value="{{ old('password') }}"> 
             </div>
 
-            <div class="form-group">
+            <div class="control">
 
                 <div>
-                    <label>Sexo</label>
-                    <select id="inputState" class="form-control" name="gender">
+                    <label class="label">Sexo</label>
+                    <select id="inputState" class="input" name="gender">
                         <option value="1" selected>Masculino</option>
                         <option value="2">Femenino</option>
                     </select>
                 </div>
 
                 <div>
-                    <label>Tipo de Usuario:</label>
-                    <select id="inputState" class="form-control" name="user_type"  v-model="user_type">
+                    <label class="label">Tipo de Usuario:</label>
+                    <select class="input" name="user_type"  v-model="user_type">
                         <option value="1" selected>Paciente</option>
                         <option value="2">Enfermera</option>
                         <option value="3">Médico</option>
@@ -67,23 +67,23 @@
                 </div>
 
                 <div v-if="user_type == 3">
-                    <label>Especialidad:</label>
-                    <input id="inputState" class="form-control" name="speciality" required>                        
+                    <label class="label">Especialidad:</label>
+                    <input id="inputState" class="input" name="speciality">                        
                 </div>
 
                 <div v-if="user_type == 3">
-                    <label>Cedula:</label>
-                    <input class="form-control" name="cedula" type="text">
+                    <label class="label">Cedula:</label>
+                    <input class="input" name="cedula" type="text">
                 </div>
 
                 <div v-if="user_type == 3">
-                    <label>Sub Especialidad:</label>
-                    <input class="form-control" name="sub_speciality" type="text">
+                    <label class="label">Sub Especialidad:</label>
+                    <input class="input" name="sub_speciality" type="text">
                 </div>
                     
             </div>
-
-            <button type="submit" class="btn btn-primary btn-lg btn-block">Crear Usuario</button>
+             <br>
+            <button type="submit" class="button is-success">Crear Usuario</button>
 
         </form>
 
@@ -100,12 +100,13 @@
     <script>
     
     var app = new Vue({
-        el: '#app',
 
-        data: {            
+        el: '#app',
+        data: {     
+
             user_type: 1,
 
-            }
+            },
         });
     
     </script>
