@@ -5,7 +5,7 @@
 <br><br>
 <section id="main" class="container medium">
 	<header>
-		<h2>Recupera tu contraseña</h2>
+		<h2>Restablece tu contraseña</h2>
 		<p>Escribe tu nueva contraseña</p>
 	</header>
 	<div class="box">
