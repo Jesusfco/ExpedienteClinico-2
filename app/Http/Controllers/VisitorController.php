@@ -6,9 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Reset;
+use App\Recipe;
 use App\Mail\ResetMail;
 use Session;
 use Mail;
+use QRCode;
+use PDF;
 
 class VisitorController extends Controller
 {
@@ -30,6 +33,26 @@ class VisitorController extends Controller
 
         }
         
+
+    }
+
+    public function validateReceipt($id) {
+
+        $recipe = Recipe::find($id);
+
+        if($recipe == NULL)
+            return '<h2>Receta Inexistente</h2>';                
+     
+
+            QRCode::text(url('aplicacion/verificarReceta', $id))
+                ->setSize(4)
+                ->setMargin(2)
+                ->setOutfile('images/QRLinks/'. $id . '.png')
+                ->png();        
+
+        // return view('app/pdf/receta')->with('recipe', $recipe);
+        $pdf = PDF::loadView('app/pdf/receta', ['recipe' => $recipe] );
+        return $pdf->stream('TECNOMEDICS_RECETA #'. $recipe->id . '.pdf');     
 
     }
 

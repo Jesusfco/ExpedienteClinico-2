@@ -8,6 +8,7 @@ use App\Recipe;
 use App\User;
 use App\RecipeDescription;
 use PDF;
+use QRCode;
 
 class RecipesController extends Controller
 {
@@ -124,9 +125,14 @@ class RecipesController extends Controller
         $recipe->medic = User::find($recipe->medic_id);
         $recipe->description;
 
+        QRCode::text(url('aplicacion/verificarReceta', $id))
+        ->setSize(4)
+        ->setMargin(2)
+        ->setOutfile('images/QRLinks/'. $id . '.png')
+        ->png();      
         // return view('app/pdf/receta')->with('recipe', $recipe);
         $pdf = PDF::loadView('app/pdf/receta', ['recipe' => $recipe] );
-        return $pdf->stream('HOSPITAL-MUNOA-RECETA #'. $recipe->id . '.pdf');      
+        return $pdf->stream('TECNOMEDICS-RECETA #'. $recipe->id . '.pdf');      
     }
 
     public function delete($id) {

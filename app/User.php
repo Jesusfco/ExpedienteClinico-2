@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'patern', 'matern', 
+        'name', 'email', 'password', 'patern', 'matern', 'gender' ,
         'speciality_id', 'user_type', 'address_id', 'personal_data_id', 
         'medical_data_id', 'expedient_id', 'born_expedient_id'
     ];
@@ -66,5 +66,27 @@ class User extends Authenticatable
     public function weights()
     {
         return $this->hasMany('App\Weight', 'user_id', 'id');
+    }
+
+    public function userTypeView() {
+        if($this->user_type == 1) {
+            return 'Paciente';
+        } else if($this->user_type == 2) {
+            return 'Enfermera';
+        } else if($this->user_type == 3) {
+            return 'Doctor';
+        }else if($this->user_type == 4) {
+            return 'Administrador';
+        }
+
+    }
+    public function genderView() {
+         if($this->gender == 1) {
+             return 'Masculino';
+         } else if($this->gender == 2) {
+             return 'Femenino';
+         }
+
+         return null;
     }
 }

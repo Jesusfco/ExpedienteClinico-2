@@ -16,6 +16,7 @@ Route::get('app/users/create', 'UsersController@create');
 Route::post('app/users/create', 'UsersController@store');
 
 Route::get('app/users/show/{id}', 'UsersController@show');
+Route::get('app/users/PDF/{id}', 'UsersController@PDF');
 Route::get('app/users/alergias/{id}', 'UsersController@allergies');
 Route::get('app/users/edit/usuario/{id}', 'UsersController@editUsuario');
 Route::post('app/users/edit/usuario/{id}', 'UsersController@updateUsuario');
@@ -41,6 +42,9 @@ Route::get('app/citas/create', 'DatesController@create');
 Route::post('app/citas/create', 'DatesController@store');
 Route::post('app/citas/create/getSugest', 'DatesController@sugest');
 Route::get('app/citas/show/{id}', 'DatesController@show');
+Route::get('app/citas/edit/{id}', 'DatesController@edit');
+Route::post('app/citas/edit/{id}', 'DatesController@update');
+Route::post('app/citas/sugestMedic', 'DatesController@sugestMedic');
 Route::get('app/citas/delete/{id}', 'DatesController@delete');
 
 Route::get('app/recetas', 'RecipesController@list');
@@ -62,6 +66,9 @@ Route::get('app/crearCita', 'PatientController@createDate');
 Route::post('app/crearCita', 'PatientController@storeDate');
 Route::get('app/misRecetas/{id}/accidente', 'PatientController@accidenteForm');
 Route::post('app/misRecetas/{id}/accidente', 'PatientController@storeObservation');
+
+Route::get('app/getNotifications', 'NotificationsController@get');
+Route::get('app/setReadNotifications', 'NotificationsController@setReadNotifications');
 
 Route::get('/', function () {
     return view('visitor/index');
@@ -95,3 +102,4 @@ Route::post('/resetPassword', 'VisitorController@sentTokenReset');
 Route::get('/resetPassword/{token}', 'VisitorController@resetPassword2');
 Route::post('/resetPassword/{token}', 'VisitorController@updatePassword');
 
+Route::get('aplicacion/verificarReceta/{id}', 'VisitorController@validateReceipt');

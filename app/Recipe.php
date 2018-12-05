@@ -14,4 +14,14 @@ class Recipe extends Model
     {
         return $this->hasMany('App\RecipeDescription', 'recipe_id', 'id');
     }
+
+    public function user()
+    {
+        return $this->hasOne('App\User', 'id', 'user_id');
+    }
+
+    public function medic()
+    {
+        return $this->hasOne('App\User', 'id', 'medic_id');
+    }
 }

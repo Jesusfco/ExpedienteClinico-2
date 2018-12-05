@@ -8,8 +8,10 @@
 
     <div class="panel-body">
 
-    <a href="{{ url('app/recetas/create') }}"> <button type="button" class="button is-link">Crear Receta</button>
+        @if(Auth::user()->user_type == 3)
+            <a href="{{ url('app/recetas/create') }}"> <button type="button" class="button is-link">Crear Receta</button>
             </a>
+        @endif  
 
         
 

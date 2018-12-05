@@ -13,16 +13,24 @@ use App\Receipt;
 use App\BornExpedient;
 use App\Expedient;
 use App\Weight;
+use Auth;
+use PDF;
 
 class UsersController extends Controller {
 
     public function __construct() {
-        $this->middleware('Doctor');   
+        $this->middleware('Nurse'); 
     }
 
     public function list(Request $re) {
 
-        $users = User::orderBy('name', 'ASC')->where('name', 'LIKE', '%' . $re->search . '%')->paginate(15);
+        if(Auth::user()->user_type < 4) {   
+            $users = User::orderBy('name', 'ASC')->where([['name', 'LIKE', '%' . $re->search . '%'],['user_type', 1]])->paginate(15);
+
+        } else {
+            $users = User::orderBy('name', 'ASC')->where('name', 'LIKE', '%' . $re->search . '%')->paginate(15);
+        }
+        
 
         return view('app/users/list')->with('users', $users);
 
@@ -178,6 +186,15 @@ class UsersController extends Controller {
 
         $personal->save();
 
+        return back()->with('msj', 'Datos Personales Actualizados Correctamente');
+
+    }
+
+    public function PDF($id) {
+        $user = User::find($id);
+
+        $pdf = PDF::loadView('app/pdf/expediente', ['user' => $user] );
+        return $pdf->stream('EXPEDIENTE-PACIENTE #'. $user->id . '.pdf');  
     }
 
     public function updateExpediente(Request $r, $id) {

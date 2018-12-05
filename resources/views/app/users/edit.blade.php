@@ -18,8 +18,8 @@
         <li class="is-active"><a href="{{ url('app/users/edit/usuario', $user->id) }}">Usuario</a></li>
         <li><a href="{{ url('app/users/edit/direccion', $user->id) }}">Dirección</a></li>
         <li><a href="{{ url('app/users/edit/personal', $user->id) }}">Datos Personales</a></li>
-        <li><a href="{{ url('app/users/edit/nacimiento', $user->id) }}">Expediente</a></li>
-        <li><a href="{{ url('app/users/edit/expediente', $user->id) }}">Expediente de nacimiento</a></li>
+        <li><a href="{{ url('app/users/edit/expediente', $user->id) }}">Expediente</a></li>
+        <li><a href="{{ url('app/users/edit/nacimiento', $user->id) }}">Expediente de nacimiento</a></li>
 
     </ul>
 </div>
@@ -37,7 +37,7 @@
 
         {{ csrf_field() }}
 
-        <div  v-bind:class="{ 'hide': !view.user }" v-if="view.user" class="panel-body">
+        <div  class="panel-body">
 
                 <div class="field">
                     <label class="label">Nombre</label>
@@ -107,234 +107,14 @@
                 
         </div>        
 
-        <div  v-bind:class="{ 'hide': !view.direction }" class="panel-body">                  
-
-            <div class="control">
-                <label class="label">Calle</label>
-                <input type="text" class="input" name="street"  value="{{$user->address->street }}">
-            </div>
-
-            <div class="control">
-                <label class="label">Colonia</label>
-                <input class="input" type="text"  name="colony" value="{{ $user->address->colony }}">
-            </div>
-
-            <div class="control">
-                <label class="label">Ciudad</label>
-                <input class="input" type="text"  name="city" value="{{ $user->address->city }}">
-            </div>
-
-            <div class="control">
-                <label class="label">Estado</label>
-                <input class="input" type="text" name="state" value="{{ $user->address->state }}"> 
-            </div>
-
-            <div class="control">
-                <label class="label">Numero</label>
-                <input class="input" type="number" name="house_number" value="{{ $user->address->house_number }}"> 
-            </div>
-
-            <div class="control">
-                <label class="label">Numero Interior</label>
-                <input class="input" type="number" name="house_number_int" value="{{ $user->address->house_number_int }}"> 
-            </div>
-
-            <div class="control">
-                <label class="label">Codigo Postal</label>
-                <input class="input" type="number" name="CP" value="{{ $user->address->CP }}"> 
-            </div>
-            
-        </div>    
-
-        <div  v-bind:class="{ 'hide': !view.personal }" class="panel-body">            
-            
-            <div class="control">
-                <label class="label">Teléfono 1</label>
-                <input type="phone" class="input" name="phone"  value="{{$user->personal->phone }}">
-            </div>
-
-            <div class="control">
-                <label class="label">Teléfono 2</label>
-                <input class="input" type="phone"  name="phone2" value="{{ $user->personal->phone2 }}">
-            </div>
-
-            <div class="control">
-                <label class="label">Nacionalidad</label>
-                <input class="input" type="text"  name="nacionality" value="{{ $user->personal->nacionality }}">
-            </div>
-
-            <div class="control">
-                <label class="label">Fecha de nacimiento</label>
-                <input class="input" type="date" name="birthday" value="{{ $user->personal->birthday }}"> 
-            </div>
-
-            <div class="control">
-                <label class="label">CURP</label>
-                <input class="input" type="text" name="CURP" value="{{ $user->personal->CURP }}"> 
-            </div>
-
-            <div class="control">
-                <label class="label">Estado Civil</label>
-                <input class="input" type="text" name="civil_status" value="{{ $user->personal->civil_status }}"> 
-            </div>
-
-            <div class="control">
-                <label class="label">Ocupación</label>
-                <input class="input" type="text" name="occupation" value="{{ $user->personal->occupation }}"> 
-            </div>
-        
-
-            <div class="control">
-                <label class="label">Religión</label>
-                <input class="input" type="text" name="religion" value="{{ $user->personal->religion }}"> 
-            </div>
-
-            <div class="control">
-                <label class="label">Nivel Socioeconómico</label>
-                <select class="input" type="number" name="economic_level" value="{{ $user->personal->economic_level }}"> 
-                    <option value="{{$user->personal->economic_level}}"> {{$user->personal->economic_level}}</option>
-                    <option value="BAJA">BAJA</option>
-                    <option value="MEDIA">MEDIA</option>
-                    <option value="ALTA">ALTA</option>
-                </select>
-            </div>
-
+       
             <br>
 
             <button type="submit" class="button is-success">Editar</button>
 
         </div>    
 
-        <div v-bind:class="{ 'hide': !view.expedient }" class="panel-body">            
-            
-                <div class="control">
-                    <label class="label">Peso Kg:</label>
-                    <input type="number" class="input" name="weight"  value="{{$user->expedient->weight }}">
-                </div>
-
-                <div class="control">
-                    <label class="label">Talla cm:</label>
-                    <input type="number" class="input" name="height"  value="{{$user->expedient->height }}">
-                </div>
-
-                <div class="field">
-                        <label class="label">Tipo de Sangre:</label>
-                        <div class="select">
-                            <select type="text" class="input" name="blood_type" v-model="blood_type">
-                                <option>O+</option>
-                                <option>A+</option>
-                                <option>B+</option>
-                                <option>AB+</option>
-                                <option>O-</option>
-                                <option>A-</option>
-                                <option>B-</option>
-                                <option>AB-</option>
-                            </select>
-                        </div>
-                    </div>
-
-                <div class="control">
-                    <label class="label">Antecedentes heredo familiaries:</label>
-                    <textarea class="textarea" name="antecentes_heredo_familiares">
-                        {{$user->expedient->antecentes_heredo_familiares }}
-                    </textarea>
-                </div>
-
-                <div class="control">
-                    <label class="label">Antecedentes Personales Patologicos:</label>
-                    <textarea class="textarea" name="antecentes_personales_patologicos">
-                        {{$user->expedient->antecentes_personales_patologicos }}
-                    </textarea>
-                </div>
-
-                <div class="control">
-                    <label class="label">Antecedentes Personales No Patologicos:</label>
-                    <textarea class="textarea" name="antecentes_personales_no_patologicos">
-                        {{$user->expedient->antecentes_personales_no_patologicos }}
-                    </textarea>
-                </div>
-
-                <div class="control">
-                    <label class="label">Antecedentes Personales No Patologicos:</label>
-                    <textarea class="textarea" name="antecentes_personales_no_patologicos">
-                        {{$user->expedient->antecentes_personales_no_patologicos }}
-                    </textarea>
-                </div>
-
-        </div>
-
-        <div v-bind:class="{ 'hide': !view.born }" class="panel-body">            
-            
-                <div class="control">
-                    <label class="label">Edad de la madre:</label>
-                    <input type="number" class="input" name="edad_madre"  value="{{$user->born->edad_madre }}">
-                </div>
-
-                <div class="control">
-                    <label class="label">No. embarazo de la madre:</label>
-                    <input type="number" class="input" name="no_embarazo"  value="{{$user->born->no_embarazo }}">
-                </div>
-            
-                <div class="field">                    
-                        <label class="label">Tipo de nacimiento:</label>                        
-                        <div class="select">
-                        <select class="" name="tipo_nacimiento" v-model="tipo_nacimiento">
-                            <option value="1">Natural</option>
-                            <option value="2">Cesarea</option>
-                        </select>
-                    </div>
-                </div>      
-                
-                <div class="field">                    
-                    <label class="label">Llanto inmediato:</label>                        
-                    <div class="select">
-                        <select name="llanto_inmediato" v-model="llanto_inmediato">
-                            <option value="1">Si</option>
-                            <option value="2">No</option>
-                        </select>
-                    </div>
-                </div>  
-
-                <div class="field">
-                    <label class="label">APGAR:</label>
-                    <input type="number" class="input" name="APGAR"  value="{{$user->born->APGAR }}">
-                </div>
-
-                <div class="control">
-                    <label class="label">Peso Kg al nacer:</label>
-                    <input type="number" class="input" name="peso"  value="{{$user->born->peso }}">
-                </div>
-
-                <div class="control">
-                    <label class="label">Talla al nacer cm:</label>
-                    <input type="number" class="input" name="talla"  value="{{$user->born->talla }}">
-                </div>
-
-                <div class="field">                    
-                    <label class="label">Se guardo sangre criogena del cordón:</label>                        
-                    <div class="select">
-                        <select name="sangre_criogena_cordon" v-model="sangre_criogena_cordon">
-                            <option value="1">Si</option>
-                            <option value="0">No</option>
-                        </select>
-                    </div>
-                </div> 
-
-                <div class="control">
-                    <label class="label">Malformaciones:</label>
-                    <textarea class="textarea" name="malformaciones">
-                        {{$user->born->malformaciones }}
-                    </textarea>
-                </div>
-
-                <div class="control">
-                    <label class="label">Complicaciones en el embarazo:</label>
-                    <textarea class="textarea" name="complicaciones_embarazo">
-                        {{ $user->born->complicaciones_embarazo }}
-                    </textarea>
-                </div>                
-
-        </div>
+        
 
         <br>
         <button type="submit" class="button is-success">Editar</button>

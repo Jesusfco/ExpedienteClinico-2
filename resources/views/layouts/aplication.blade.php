@@ -42,11 +42,29 @@
 
             @if(Auth::user()->user_type == 2)
                 <li><a href="{{ url('app/citas')}}">Citas</a></li>
+                <li><a href="{{ url('app/users')}}">Usuarios</a></li> 
             @endif
                 <li><a href="{{ url('logout') }}">Salir</a></li>
                 
             @endif
         </ul>
+
+        <div class="userDataInfo">
+            <p>{{ Auth::user()->fullName() }}</p>
+            <p>{{ Auth::user()->userTypeView()}}</p>
+
+        </div>
+    </div>
+
+    <div id="notification">
+        <h5 v-on:click="showNot()">Notificaciones @{{notificationNotRead()}}</h5>
+        <div v-if="notView">
+        <a v-bind:class="{ 'readedNot': not.read == 1 }" v-bind:href="generateLink(not)"  v-for="not in notifications">
+                    
+                <p><strong>@{{ not.title }}</strong> @{{not.description}}</p>
+
+            </a>
+        </div>
     </div>
         <div class="content">
             @yield('content')
@@ -64,7 +82,99 @@
         
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
+    {{-- <script src="{{ url('js/app/notification.js')}}"></script> --}}
+    <script>
+
+        var basicUrl = "{{url('/')}}";
+        var notification = new Vue({
+        el: '#notification',
+        
+
+        data: {
+           
+            notView: false,
+           notifications: [],
+
+
+
+        },
+
+        created: function () {
+
+            setTimeout(() => {
+                
+                this.getNotifications();                                
+                
+            }, 100);
+
+        },
+
+        methods: {
+
+            generateLink: function(not) {
+                
+                return basicUrl + '/' + not.url;
+            }, 
+            showNot: function() {
+                this.notView = !this.notView;
+                if(this.notView && this.notificationNotRead() > 0) {
+                    this.setReadNotifications();
+                }
+            },
+            notificationNotRead: function()  {
+
+                let counter = 0;
+                for(let not of this.notifications) {
+                    if(not.read == 0) {
+                        counter++;
+                    }
+                }
+
+                return counter;
+
+            },
+            getNotifications: function() {                
+                    
+                axios.get(basicUrl + '/app/getNotifications', )
+
+                .then((response) => {
+
+                    for(let not of response.data) {
+                        this.notifications.push(not);                    
+                    }
+                    
+
+
+                }).catch((error) => {
+
+                    // app.uploading = false;
+                    // app.errorHandler(error, i);
+
+                });
+
+            },
+
+
+            setReadNotifications: function() {
+                axios.get(basicUrl + '/app/setReadNotifications', )
+
+                .then((response) => {
+
+                    
+
+                }).catch((error) => {
+                    
+
+                });
+            }
+
+        }
+
+        });
+    </script>
     @yield('scripts')
 </body>
 </html>

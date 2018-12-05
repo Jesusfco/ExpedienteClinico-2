@@ -7,32 +7,10 @@
 
     <div class="panel-body">
 
+        @if(Auth::user()->user_type > 3 )
     <a href="{{ url('app/citas/create') }}"> <button type="button" class="button is-link">Crear Cita</button>
             </a>
-
-        <form class="form-horizontal" method="GET" action="">
-            
-
-            {{-- <div class="row form-group">
-                <div class="form-group col-6">
-                    <label>Fecha Inicio</label>
-
-                    <div>
-                        <input id="name" type="date" class="form-control" name="from" value="{{ old('from') }}" autofocus>
-                    </div>
-                </div>
-
-                <div class="form-group col-6">
-                    <label>Fecha Final</label>
-
-                    <div>
-                        <input id="name" type="date" class="form-control" name="to" value="{{ old('to') }}" >
-                    </div>
-                </div>
-            </div> --}}
-            
-
-        </form>
+        @endif
 
         <table class="table">
                 <thead>
@@ -58,7 +36,10 @@
                         <td>{{ $cita->hour }}</td>
                         <td>
                             <a href="{{ url('app/citas/show/' . $cita->id ) }}"><button type="button" class="button is-success">Ver</button></a>
+                            @if(Auth::user()->user_type > 3 )
+                            <a href="{{ url('app/citas/edit/' . $cita->id ) }}"><button type="button" class="button is-warning">Editar</button></a>
                             <a href="{{ url('app/citas/delete/' . $cita->id ) }}"><button type="button" class="button is-danger">Eliminar</button></a>                                
+                            @endif
                         </td>
                     </tr>
 

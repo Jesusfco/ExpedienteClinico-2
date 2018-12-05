@@ -18,8 +18,8 @@
         <li ><a href="{{ url('app/users/edit/usuario', $user->id) }}">Usuario</a></li>
         <li><a href="{{ url('app/users/edit/direccion', $user->id) }}">Dirección</a></li>
         <li class="is-active"><a href="{{ url('app/users/edit/personal', $user->id) }}">Datos Personales</a></li>
-        <li><a href="{{ url('app/users/edit/nacimiento', $user->id) }}">Expediente</a></li>
-        <li><a href="{{ url('app/users/edit/expediente', $user->id) }}">Expediente de nacimiento</a></li>
+        <li><a href="{{ url('app/users/edit/expediente', $user->id) }}">Expediente</a></li>
+        <li><a href="{{ url('app/users/edit/nacimiento', $user->id) }}">Expediente de nacimiento</a></li>
     
     </ul>
 </div>

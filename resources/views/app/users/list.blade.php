@@ -8,9 +8,11 @@
     <h1>Usuarios</h2>
 
     <div class="panel-body">
-
-    <a href="{{ url('app/users/create') }}"> <button type="button" class="button is-info">Crear Usuario</button>
+            @if(Auth::user()->user_type > 3 )
+                <a href="{{ url('app/users/create') }}"> <button type="button" class="button is-info">Crear Usuario</button>
             </a>
+
+            @endif
 
         <form class="form-horizontal" method="GET" action="">
             
@@ -58,13 +60,22 @@
                     @endif
 
                     <td>
-                            <a href="{{ url('app/users/edit/' . $user->id ) }}"><button type="button" class="button is-">Modificar</button></a>
-                            @if($user->user_type == 1)
-                            <a href="{{ url('app/users/alergias/' . $user->id ) }}"><button type="button" class="button">Alergias</button></a>
+                            <a href="{{ url('app/users/PDF' , $user->id ) }}" target="_blank"><button type="button" class="button is-link">Expediente</button></a>
+                            @if(Auth::user()->user_type >= 3 )
+
+                            <a href="{{ url('app/users/edit/usuario' , $user->id ) }}"><button type="button" class="button is-">Modificar</button></a>
+                                @if($user->user_type == 1)
+                                <a href="{{ url('app/users/alergias/' . $user->id ) }}"><button type="button" class="button">Alergias</button></a>
+                                @endif
                             @endif
-                            {{-- <a href=""><button type="button" class="btn btn-success btn-sm">Ver</button></a>
-                            <a href=""><button type="button" class="btn btn-danger btn-sm">Eliminar</button></a>
-                             --}}
+
+                            @if(Auth::user()->user_type > 3 )
+                            
+                            
+                            <a href="{{ url('app/users/delete/' . $user->id ) }}"><button type="button" class="button is-danger">Eliminar</button></a>
+
+                            @endif
+                            
                     </td>
                     </tr>
 

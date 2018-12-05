@@ -32,7 +32,7 @@
                         <tr>
                             <th scope="col">Medicamento</th>
                             <th scope="col">Frecuencia</th>
-                            
+                            <th scope="col">Contraindicaciones</th>
                             <th scope="col">Opciones</th>
                         </tr>
                     </thead>
@@ -42,7 +42,7 @@
                         
                             <td> @{{ desc.medicine }}</td>
                             <td> @{{ desc.frequency }}</td>
-                            
+                            <td> @{{ desc.contraindications }}</td>
                             <td> <button v-on:click="deleteDesc(desc)" type="button" class="button is-danger">Eliminar</button></td>
                             
                             
@@ -85,8 +85,7 @@
 
 @section('scripts')
 
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
+
     <script>
     
     var app = new Vue({

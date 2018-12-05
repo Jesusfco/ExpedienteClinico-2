@@ -2,273 +2,223 @@
 @section('title', 'Editar Cita Medica') 
 @section('content')
 
-<form  method="POST" action="" id="app">
-    <div class="panel-heading">Editar Cita</div>
 
-    <div class="panel-body">
+    <h1>Editar Cita #{{ $date->id }}</h1>
 
-  
+    <div class="panel-body" id="app">
 
-        
-            {{ csrf_field() }}
+        <div v-if="date.medic == null">
+        <h5>Buscar Medico</h5>
+        <div class="field">
+            <label>Nombre</label>
+            <input class="input" placeholder="Nombre" v-model="search.name">
+        </div>
+        {{-- <div class="field">
+            <label>Apellido Paterno</label>
+            <input class="input" placeholder="Apellido Paterno" v-model="search.patern">
+        </div>
+        <div class="field">
+            <label>Apellido Materno</label>
+            <input class="input" placeholder="Apellido Materno" v-model="search.matern">
+        </div> --}}
 
-            <div class="form-group">
-                <label >Nombre</label>
-                <input type="text" class="form-control" name="name"  placeholder="PEPE" value="{{$user->name }}" required>
-            </div>
+            <button class="button is-info" v-on:click="sugestUsers()">Buscar </button>
 
-            <div class="form-group">
-                <label>Apellido Paterno</label>
-                <input class="form-control" type="text"  name="patern" value="{{ $user->patern }}">
-            </div>
+        </div>
 
-            <div class="form-group">
-                <label>Apellido Materno</label>
-                <input class="form-control" type="text"  name="matern" value="{{ $user->matern }}">
-            </div>
-
-            <div class="form-group">
-                <label>Correo</label>
-                <input class="form-control" type="email" name="email" value="{{ $user->email }}" required> 
-
-               
-
-            </div>
-
-            <div class="form-group">
-                <label>Contraseña</label>
-                <input class="form-control" type="password" name="password"> 
-            </div>
-
-            <div class="form-group">
-
-                <div>
-                    <label>Sexo</label>
-                    <select id="inputState" class="form-control" name="gender" v-model="gender">
-                        <option value="1">Masculino</option>
-                        <option value="2">Femenino</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label>Tipo de Usuario:</label>
-                    <select id="inputState" class="form-control" name="user_type" v-model="user_type">
-                        <option value="1">Paciente</option>
-                        <option value="2">Enfermera</option>
-                        <option value="3">Medico</option>
-                        <option value="4">Administrador</option>
-                    </select>
-                </div>
+        <table class="table" v-if="date.medic == null &&  sugests.length > 0">
+            <thead>
+                <tr>
+                    <th scope="col">#ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">A Paterno</th>
+                    <th scope="col">A Materno</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>     
+                <tr v-for="sugest in sugests" >
                     
+                <td> @{{ sugest.id }}</td>
+                <td> @{{ sugest.name }}</td>
+                <td> @{{ sugest.patern }}</td>
+                <td> @{{ sugest.matern }}</td>
+                <td> @{{ sugest.type }}</td>
+                <td> <button class="button is-link" v-on:click="selectUser(sugest)" type="button" class="btn btn-success btn-sm">Seleccionar</button></td>
+                    
+                    
+                </tr>
+            </tbody>
+        </table>
+
+        <form  method="POST" action=""  onsubmit="return app.checkForm()">
+            {{ csrf_field() }}            
+
+            {{-- <input  type="hidden" name="user_id" v-model="date.user_id"> --}}
+            <input type="hidden" name="medic_id" v-model="date.medic_id">
+            <div class="field">
+                <label >Paciente</label>
+                <input type="text" class="input" name="pacient" v-model="date.pacient" disabled>
             </div>
 
-        
-        <input type="hidden" value="{{ $user->speciality_id }}" id="2">
-        <input type="hidden" value="{{ $user->user_type }}" id="4">
-        <input type="hidden" value="{{ $user->gender }}" id="5">
-        @if($user->user_type == 3)
-        <input type="hidden" value="{{ $user->medical->cedula }}" id="1">
-        <input type="hidden" value="{{ $user->medical->sub_speciality }}" id="3">
-        @endif
+            <div class="field">
+                <label >Medico</label>
+                <input type="text" class="input" name="medic" v-model="date.medic" disabled>
+            </div>
 
-        <div v-if="user_type == 3">
-            <label>Especialidad:</label>
-            <select id="inputState" class="form-control" name="speciality_id"  v-model="speciality_id">
-                <option value="1">UROLOGIA</option>
-                <option value="3">NEUROLOGIA</option>
-                <option value="2">CARDIOLOGIA</option>
-                
-            </select>
-        </div>
+            <div class="field">
+                <label >Asunto:</label>
+                <input class="input" type="text"  name="subject" value="{{$date->subject}}"  required>
+            </div>
 
-        <div v-if="user_type == 3">
-            <label>Cedula:</label>
-            <input class="form-control" name="cedula" type="text" v-model="cedula">
-        </div>
+            <div class="field">
+                <label >Fecha</label>
+                <input type="date" class="input" name="date" v-model="date.date" required>
+            </div>
 
-        <div v-if="user_type == 3">
-            <label>Sub Especialidad:</label>
-            <input class="form-control" name="sub_speciality" type="text" v-model="sub_speciality">
-        </div>
-                
-            <br>
+            <div class="field">
+                <label >Hora</label>
+                <input type="time" class="input" name="hour" value="{{$date->hour}}" required>
+            </div>
 
-        <button type="submit" class="btn btn-primary btn-lg btn-block">Editar</button>
+            <div class="field">
+                <label >Consultorio:</label>
+                <input class="input" type="text"  name="room" value="{{$date->room}}"  required>
+            </div>
 
-        
+            <button type="submit" class="button is-success">Actualizar Cita</button>
+            <button type="button" v-on:click="cancelForm()" class="button is-danger">Cancelar Doctor</button>
+
+        </form>
 
         
             
     </div>
 
-    @if($user->user_type < 4)
+</div>
 
-    <div class="panel-heading">Dirección</div>
-
-    <div class="panel-body">      
-        
-        <div class="form-group">
-            <label >Calle</label>
-            <input type="text" class="form-control" name="street"  value="{{$user->address->street }}">
-        </div>
-
-        <div class="form-group">
-            <label>Colonia</label>
-            <input class="form-control" type="text"  name="colony" value="{{ $user->address->colony }}">
-        </div>
-
-        <div class="form-group">
-            <label>Ciudad</label>
-            <input class="form-control" type="text"  name="city" value="{{ $user->address->city }}">
-        </div>
-
-        <div class="form-group">
-            <label>Estado</label>
-            <input class="form-control" type="text" name="state" value="{{ $user->address->state }}"> 
-
-            
-
-        </div>
-
-        <div class="form-group">
-            <label>Numero</label>
-            <input class="form-control" type="number" name="house_number" value="{{ $user->address->house_number }}"> 
-        </div>
-
-        <div class="form-group">
-            <label>Numero Interior</label>
-            <input class="form-control" type="number" name="house_number_int" value="{{ $user->address->house_number_int }}"> 
-        </div>
-
-        <div class="form-group">
-            <label>Codigo Postal</label>
-            <input class="form-control" type="number" name="CP" value="{{ $user->address->CP }}"> 
-        </div>
-
-        <button type="submit" class="btn btn-primary btn-lg btn-block">Editar</button>
-
-    </div>
-
-    <div class="panel-heading">Datos Personales</div>
-
-    <div class="panel-body">
-        
-        <div class="form-group">
-            <label >Telefono 1</label>
-            <input type="phone" class="form-control" name="phone"  value="{{$user->personal->phone }}">
-        </div>
-
-        <div class="form-group">
-            <label>Telefono 2</label>
-            <input class="form-control" type="phone"  name="phone2" value="{{ $user->personal->phone2 }}">
-        </div>
-
-        <div class="form-group">
-            <label>Nacionalidad</label>
-            <input class="form-control" type="text"  name="nacionality" value="{{ $user->personal->nacionality }}">
-        </div>
-
-        <div class="form-group">
-            <label>Fecha de nacimiento</label>
-            <input class="form-control" type="date" name="birthday" value="{{ $user->personal->birthday }}"> 
-        </div>
-
-        <div class="form-group">
-            <label>CURP</label>
-            <input class="form-control" type="text" name="CURP" value="{{ $user->personal->CURP }}"> 
-        </div>
-
-        <div class="form-group">
-            <label>Estado Civil</label>
-            <input class="form-control" type="text" name="civil_status" value="{{ $user->personal->civil_status }}"> 
-        </div>
-
-        <div class="form-group">
-            <label>Ocupación</label>
-            <input class="form-control" type="text" name="occupation" value="{{ $user->personal->occupation }}"> 
-        </div>
-
-        <div class="form-group">
-            <label>Padecimiento</label>
-            <input class="form-control" type="text" name="suffering" value="{{ $user->personal->suffering }}"> 
-        </div>
-
-        <div class="form-group">
-            <label>Religión</label>
-            <input class="form-control" type="text" name="religion" value="{{ $user->personal->religion }}"> 
-        </div>
-
-        <div class="form-group">
-            <label>Tipo de sangre</label>
-            <input class="form-control" type="text" name="blood_type" value="{{ $user->personal->blood_type }}"> 
-        </div>
-
-        <div class="form-group">
-            <label>Numero de seguro social</label>
-            <input class="form-control" type="text" name="social_secure" value="{{ $user->personal->social_secure }}"> 
-        </div>
-
-        <div class="form-group">
-            <label>Estatura</label>
-            <input class="form-control" type="number" name="height" value="{{ $user->personal->height }}"> 
-        </div>
-
-        <div class="form-group">
-            <label>Nivel Socioeconomico</label>
-            <select class="form-control" type="number" name="economic_level" value="{{ $user->personal->economic_level }}"> 
-                <option value="{{$user->personal->economic_level}}"> {{$user->personal->economic_level}}</option>
-                <option value="BAJA">BAJA</option>
-                <option value="MEDIA">MEDIA</option>
-                <option value="ALTA">ALTA</option>
-            </select>
-        </div>
-
-        <button type="submit" class="btn btn-primary btn-lg btn-block">Editar</button>
-
-    </div>
-
-    @endif
             
 @endsection
 
 @section('scripts')
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script>
+{{-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> --}}
+<script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
+<script>
     
     var app = new Vue({
         el: '#app',
-        
 
         data: {
-            message: 'Hello Vue!',
-            user_type: null,
-            cedula: null,
-            speciality_id: null,
-            sub_speciality: null,
-            gender: null,
 
+            basicUrl: "{{ url('/') }}",
+            date: {
+                pacient: "{{ $date->user->fullName()}}",
+
+                @if($date->medic_id != NULL)
+
+                    medic: "{{ $date->medic->fullName() }}",
+                    medic_id: {{ $date->medic_id }},
+
+                @else
+
+                    medic: null,
+                    medic_id: null,
+
+                @endif
+
+                user_id: {{ $date->user_id}},
+                
+                date: "{{ $date->date }}",
+                
+                
+            },
+            
+            search: {
+                name: '',
+                patern: '',
+                matern: '',
+            },
+            sugests: [],
+            
+        },
+
+         methods: {
+            sugestUsers: function () {
+                
+                var formD = new FormData();
+                formD.append('name', this.search.name);
+                formD.append('patern', this.search.patern);
+                formD.append('matern', this.search.matern);
+
+                axios.post(this.basicUrl + '/app/citas/sugestMedic', formD)
+
+                .then(function(response) {
+                    
+                    app.sugests = [];
+
+                    for(let x of response.data) {
+
+                        app.sugests.push(x);
+
+                    }
+
+
+                }).catch(function(error) {
+
+                    // app.uploading = false;
+                    // app.errorHandler(error, i);
+
+                });
             },
 
-            created: function () {
+            selectUser: function(user) {
+                
+                if(user.user_type == 1) {
 
-                setTimeout(() => {
-                    
-                    app.user_type = document.getElementById('4').value;
-                    app.gender = document.getElementById('5').value;
+                    app.date.user_id = user.id;
+                    app.date.pacient = user.name + ' ' + user.patern + ' ' + user.matern;
 
-                    if(app.user_type == 3) {
-                        app.cedula = document.getElementById('1').value;
-                        app.speciality_id = document.getElementById('2').value;
-                        app.sub_speciality = document.getElementById('3').value;
-                    }
-                    
-                    
-                    
-                }, 100);
-    
+                } else {
+
+                    app.date.medic_id = user.id;
+                    app.date.medic = user.name + ' ' + user.patern + ' ' + user.matern;
+
+                }
+            },
+
+            cancelForm: function() {
+                this.date.medic_id = null;
+                this.date.medic = null;                
+            },
+
+            checkForm: function() {
+
+// console.log(this.date);
+                let validate = true;
+                if(app.date.pacient == null) validate = false;
+                if(app.date.medic == null) validate = false;
+
+                let d = new Date(app.date.date);
+                let now = new Date();
+                d.setHours(1, 1, 1, 1);
+                d.setDate(d.getDate() + 1);
+                now.setHours(0, 0, 0, 0);
+                
+
+                if(d < now){ 
+                    validate = false;
+                    alert('Coloque una fecha proxima a ocurrir')                
+                }
+
+                // return false;
+                return validate;
+
             }
+        }
         });
     
-    </script>
+</script>
 @endsection

@@ -1,6 +1,5 @@
 @extends('layouts.aplication')
 @section('title', 'Editar Expediente de Nacimiento') 
-
 @section('content')
 <div id="app">
     

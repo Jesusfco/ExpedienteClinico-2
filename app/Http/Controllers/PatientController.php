@@ -81,7 +81,7 @@ class PatientController extends Controller
         $date->save();
 
         $notification = new Notification();
-        $notification->user_type = 3;
+        $notification->user_type = 4;
         $notification->title = 'Nueva Cita';
         $notification->description = 'Esta cita aun no tiene un medico asignado';
         $notification->type = 1;

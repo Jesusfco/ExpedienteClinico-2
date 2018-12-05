@@ -12,14 +12,53 @@
     display: block;
 }
 
-.navegations-left img { 
+.navegations-left img {
     margin: 0 auto;
     width: 80%;
     display: block;
     margin-top: 30px;
 }
+
 .navegations-left a {
     color: white;
     font-size: 20px;
     padding: 5px 15px;
+}
+
+#notification {
+    position: fixed;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    -webkit-box-shadow: -6px 10px 10px -7px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -6px 10px 10px -7px rgba(0, 0, 0, 0.75);
+    box-shadow: -6px 10px 10px -7px rgba(0, 0, 0, 0.75);
+}
+
+#notification h5 {
+    max-width: 200px;
+    background: rgb(44, 44, 44);
+    color: white;
+    padding: 10px;
+}
+
+.readedNot {
+    background: rgb(211, 211, 211);
+}
+
+#notification a {
+    width: 200px;
+    background: white;
+    display: block;
+    color: black;
+}
+
+.userDataInfo {
+    position: absolute !important;
+    bottom: 25px;
+    left: 0;
+    padding: 10px;
+    color: rgb(204, 204, 204);
+    width: 220px;
+    font-size: 14px !important;
 }
