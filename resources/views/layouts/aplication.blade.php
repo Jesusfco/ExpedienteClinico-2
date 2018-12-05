@@ -29,6 +29,7 @@
             @else
 
             @if(Auth::user()->user_type == 1)
+                <li><a href="{{ url('app/crearCita')}}">CREAR CITA</a></li>
                 <li><a href="{{ url('app/misCitas')}}">MIS CITAS</a></li>
                 <li><a href="{{ url('app/misRecetas')}}">MIS RECETAS</a></li>
             @endif

@@ -15,11 +15,11 @@
         <form class="form-horizontal" method="GET" action="">
             
 
-            <div class="form-group">
+            <div class="field">
                 <label for="name" class="col-md-4 control-label">Buscar</label>
 
-                <div class="col-md-6">
-                    <input id="name" type="text" class="form-control" name="search" value="{{ old('search') }}" autofocus>
+                
+                    <input id="name" type="text" class="input" name="search" value="{{ old('search') }}" autofocus>
 
                     
                 </div>
@@ -60,7 +60,7 @@
                     <td>
                             <a href="{{ url('app/users/edit/' . $user->id ) }}"><button type="button" class="button is-">Modificar</button></a>
                             @if($user->user_type == 1)
-                            <a href="{{ url('app/users/alergias/' . $user->id ) }}"><button type="button" class="btn btn-secondary btn-sm">Alergias</button></a>
+                            <a href="{{ url('app/users/alergias/' . $user->id ) }}"><button type="button" class="button">Alergias</button></a>
                             @endif
                             {{-- <a href=""><button type="button" class="btn btn-success btn-sm">Ver</button></a>
                             <a href=""><button type="button" class="btn btn-danger btn-sm">Eliminar</button></a>

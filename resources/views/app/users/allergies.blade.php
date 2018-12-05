@@ -1,27 +1,28 @@
 @extends('layouts.aplication')
 
+@section('title', 'Alergias') 
 @section('content')
 
 
-    <div class="panel-heading">Alergías de Paciente <br> {{$user->name }} {{ $user->patern }} {{ $user->matern }}</div>
+    <h1>Alergías del Paciente <br> {{$user->fullName() }}</h1>
 
-    <div class="panel-body">
+    <div class="panel-body" id="app">
 
-        <form v-on:submit.prevent="create()">
+        <form v-on:submit.prevent="create()" class="form">
 
-                <h3 class="text-center">Agrega una nueva Alergía</h3>
+                <h5 class="text-center">Agrega una nueva Alergía</h5>
     
-                <div class="form-group">
+                <div class="field">
                     <label >Nombre:</label>
-                    <input type="text" class="form-control" name="pacient" v-model="name" required>
+                    <input type="text" class="input" name="pacient" v-model="name" required>
                 </div>
         
-                <div class="form-group">
+                <div class="field">
                     <label >Descripción</label>
-                    <input type="text" class="form-control" name="medic" v-model="description">
+                    <input type="text" class="input" name="medic" v-model="description">
                 </div>
     
-                <button type="submit" class="btn btn-primary btn-lg btn-block">Agregar Nueva Alergía</button>
+                <button type="submit" class="button is-success">Agregar Nueva Alergía</button>
     
             </form>   
 
@@ -47,7 +48,7 @@
                 
                     <td> @{{ allergy.name }}</td>
                     <td> @{{ allergy.description }}</td>
-                    <td> <button v-on:click="deleteAllergy(allergy)" type="button" class="btn btn-warning btn-sm">Eliminar</button></td>
+                    <td> <button v-on:click="deleteAllergy(allergy)" type="button" class="button is-danger">Eliminar</button></td>
             
                 </tr>
 

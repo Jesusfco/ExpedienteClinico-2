@@ -1,9 +1,9 @@
 @extends('layouts.aplication')
-
+@section('title', 'Editar Cita Medica') 
 @section('content')
 
 <form  method="POST" action="" id="app">
-    <div class="panel-heading">Editar Usuario</div>
+    <div class="panel-heading">Editar Cita</div>
 
     <div class="panel-body">
 

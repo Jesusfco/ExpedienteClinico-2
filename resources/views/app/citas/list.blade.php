@@ -1,13 +1,13 @@
 @extends('layouts.aplication')
-
+@section('title', 'Citas Medicas') 
 @section('content')
 
 
-    <div class="panel-heading">Citas</div>
+    <h1>Citas Medicas</h1>
 
     <div class="panel-body">
 
-    <a href="{{ url('app/citas/create') }}"> <button type="button" class="btn btn-success">Crear Cita</button>
+    <a href="{{ url('app/citas/create') }}"> <button type="button" class="button is-link">Crear Cita</button>
             </a>
 
         <form class="form-horizontal" method="GET" action="">
@@ -40,6 +40,7 @@
                         <th scope="col">#ID</th>
                         <th scope="col">Paciente</th>
                         <th scope="col">Doctor</th>
+                        <th scope="col">Asunto</th>
                         <th scope="col">Fecha</th>
                         <th scope="col">Hora</th>
                         <th scope="col">Opciones</th>
@@ -52,11 +53,12 @@
                         <th scope="row">{{ $cita->id }}</th>
                         <td>{{ $cita->user }}</td>
                         <td>{{ $cita->medic }}</td>                    
+                        <td>{{ $cita->subject }}</td>
                         <td>{{ $cita->date }}</td>
                         <td>{{ $cita->hour }}</td>
                         <td>
-                            <a href="{{ url('app/citas/show/' . $cita->id ) }}"><button type="button" class="btn btn-primary btn-sm">Ver</button></a>
-                            <a href="{{ url('app/citas/delete/' . $cita->id ) }}"><button type="button" class="btn btn-danger btn-sm">Eliminar</button></a>                                
+                            <a href="{{ url('app/citas/show/' . $cita->id ) }}"><button type="button" class="button is-success">Ver</button></a>
+                            <a href="{{ url('app/citas/delete/' . $cita->id ) }}"><button type="button" class="button is-danger">Eliminar</button></a>                                
                         </td>
                     </tr>
 

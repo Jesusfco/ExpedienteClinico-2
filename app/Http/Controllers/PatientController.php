@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Recipe;
 use App\Date;
 use App\User;
+use App\Notification;
 use PDF;
 
 class PatientController extends Controller
@@ -60,6 +61,35 @@ class PatientController extends Controller
         }
 
         return view('app/patient/recipes')->with('recipes', $recipes);
+    }
+
+    public function createDate() {
+        return view('app/patient/createDate');
+    }
+
+    public function storeDate(Request $re) {
+
+        $date = new Date();
+
+        $date->user_id = Auth::id();
+        
+        $date->subject = $re->subject;
+        $date->date = $re->date;
+        $date->hour = $re->hour;
+        
+
+        $date->save();
+
+        $notification = new Notification();
+        $notification->user_type = 3;
+        $notification->title = 'Nueva Cita';
+        $notification->description = 'Esta cita aun no tiene un medico asignado';
+        $notification->type = 1;
+        $notification->url = 'app/citas/show/' . $date->id;
+        $notification->save();
+
+        return redirect('/app/misCitas')->with('mjs', 'Cita Creada Correctamente');
+
     }
 
     public function pdfRecipe($id){

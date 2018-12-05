@@ -3,7 +3,7 @@
 @section('content')
 
 
-    <div class="panel-heading">Mis Citas</div>
+    <h1>Mis Citas</h1>
 
     <div class="panel-body">
 

@@ -1,21 +1,21 @@
 @extends('layouts.aplication')
-
+@section('title', 'Ver Receta #' . $recipe->id) 
 @section('content')
 
 
-<div class="panel-heading">Receta #{{$recipe->id}}</div>
+<h1>Receta #{{$recipe->id}}</h1>
 
     <div class="panel-body" id="app">
 
         
             <div class="form-group">
-                <label >Paciente</label>
-                <input type="text" class="form-control" name="pacient" value="{{ $recipe->user->name }} {{ $recipe->user->patern }}" disabled>
+                <label class="label">Paciente</label>
+                <input type="text" class="input" name="pacient" value="{{ $recipe->user->name }} {{ $recipe->user->patern }}" disabled>
             </div>
 
             <div class="form-group">
-                <label >Medico</label>
-                <input type="text" class="form-control" name="pacient" value="{{ $recipe->medic->name }} {{ $recipe->medic->patern }}" disabled>
+                <label class="label">Medico</label>
+                <input type="text" class="input" name="pacient" value="{{ $recipe->medic->name }} {{ $recipe->medic->patern }}" disabled>
             </div>
 
             <p> <strong>Observación: </strong> {{ $recipe->observation }} </p>

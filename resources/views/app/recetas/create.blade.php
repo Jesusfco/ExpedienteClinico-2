@@ -1,18 +1,21 @@
 @extends('layouts.aplication')
-
+@section('title', 'Crear Receta Medica') 
 @section('content')
 
 
-    <div class="panel-heading">Crear Usuario</div>
+    <h1>Crear Usuario</h1>
 
     <div class="panel-body" id="app">
 
         <h5>Buscar Paciente</h5>
-        <input placeholder="Nombre" v-model="search.name">
-        <input placeholder="Apellido Paterno" v-model="search.patern">
-        <input placeholder="Apellido Materno" v-model="search.matern">
+        <div class="field">
+            <label class="label">Nombre</label>
+            <input class="input" placeholder="Nombre" v-model="search.name">
+        </div>
+        {{-- <input placeholder="Apellido Paterno" v-model="search.patern">
+        <input placeholder="Apellido Materno" v-model="search.matern"> --}}
 
-        <button v-on:click="sugestUsers()">Buscar </button>
+        <button class="button is-link" v-on:click="sugestUsers()">Buscar </button>
 
         <table class="table">
             <thead>
@@ -46,21 +49,21 @@
             
             <input type="hidden" name="medic" id="1" value="">
 
-            <div class="form-group">
+            <div class="field">
                 <label >Paciente</label>
-                <input type="text" class="form-control" name="pacient" value="{{ old('pacient') }}" v-model="recipe.pacient" disabled>
+                <input type="text" class="input" name="pacient" value="{{ old('pacient') }}" v-model="recipe.pacient" disabled>
             </div>
 
-            <div class="form-group">
+            <div class="field">
                 <label >Medico</label>
-                <input type="text" class="form-control" name="medic" value="{{ Auth::user()->name }} {{ Auth::user()->patern }} {{ Auth::user()->matern }}" disabled>
+                <input type="text" class="input" name="medic" value="{{ Auth::user()->name }} {{ Auth::user()->patern }} {{ Auth::user()->matern }}" disabled>
             </div>
 
             
 
             
 
-            <button type="submit" class="btn btn-primary btn-lg btn-block">Crear Receta</button>
+            <button type="submit" class="button is-success">Crear Receta</button>
 
         </form>
 

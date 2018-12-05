@@ -3,7 +3,7 @@
 @section('content')
 
 
-    <div class="panel-heading">Mis Recetas</div>
+    <h1>Mis Recetas</h1>
 
     <div class="panel-body">
 
@@ -36,8 +36,8 @@
                             <td>Si</td>
                             @endif
                             <td>
-                                <a href="{{ url('app/misRecetas/' . $re->id ) }}"><button type="button" class="btn btn-success btn-sm">PDF</button></a>
-                                <a href="{{ url('app/misRecetas/' . $re->id . '/accidente') }}"><button type="button" class="btn btn-alert btn-sm">Accidente Adverso</button></a>
+                                <a href="{{ url('app/misRecetas/' . $re->id ) }}"><button type="button" class="button is-link">PDF</button></a>
+                                <a href="{{ url('app/misRecetas/' . $re->id . '/accidente') }}"><button type="button" class="button is-warning">Accidente Adverso</button></a>
                                 {{-- <a href="{{ url('app/recetas/delete/' . $re->id ) }}"><button type="button" class="btn btn-danger btn-sm">Eliminar</button></a> --}}
                                     
                             </td>

@@ -16,10 +16,11 @@ class CreateDatesTable extends Migration
         Schema::create('dates', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->integer('medic_id');
+            $table->integer('medic_id')->nullable();
             $table->string('subject')->nullable();
+            $table->string('date');
             $table->string('hour');
-            $table->string('room');
+            $table->string('room')->nullable();
             $table->timestamps();
         });
     }

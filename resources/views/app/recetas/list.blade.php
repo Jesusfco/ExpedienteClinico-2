@@ -1,13 +1,14 @@
 @extends('layouts.aplication')
 
+@section('title', 'Lista de Recetas') 
 @section('content')
 
 
-    <div class="panel-heading">Recetas</div>
+    <h1>Recetas</h1>
 
     <div class="panel-body">
 
-    <a href="{{ url('app/recetas/create') }}"> <button type="button" class="btn btn-success">Crear Receta</button>
+    <a href="{{ url('app/recetas/create') }}"> <button type="button" class="button is-link">Crear Receta</button>
             </a>
 
         
@@ -39,10 +40,10 @@
                             @endif
                             
                             <td>
-                                <a href="{{ url('app/recetas/show/' . $re->id ) }}"><button type="button" class="btn btn-success btn-sm">Ver</button></a>
-                                <a href="{{ url('app/recetas/PDF/' . $re->id ) }}"><button type="button" class="btn btn-info btn-sm">PDF</button></a>
-                                <a href="{{ url('app/recetas/crearDescription/' . $re->id ) }}"><button type="button" class="btn btn-success btn-sm">Editar</button></a>
-                                <a href="{{ url('app/recetas/delete/' . $re->id ) }}"><button type="button" class="btn btn-danger btn-sm">Eliminar</button></a>
+                                <a href="{{ url('app/recetas/show/' . $re->id ) }}"><button type="button" class="button is-success">Ver</button></a>
+                                <a href="{{ url('app/recetas/PDF/' . $re->id ) }}"><button type="button" class="button is-warning">PDF</button></a>
+                                <a href="{{ url('app/recetas/crearDescription/' . $re->id ) }}"><button type="button" class="button is-info">Editar</button></a>
+                                <a href="{{ url('app/recetas/delete/' . $re->id ) }}"><button type="button" class="button is-danger">Eliminar</button></a>
                                     
                             </td>
                         </tr>

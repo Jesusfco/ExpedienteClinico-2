@@ -1,21 +1,21 @@
 @extends('layouts.aplication')
-
+@section('title', 'Editar Receta Medica') 
 @section('content')
 
 
-    <div class="panel-heading">Administrar Descripción Receta</div>
+    <h1>Administrar descripción de receta</h1>
 
     <div class="panel-body" id="app">
 
         
             <div class="form-group">
                 <label >Paciente</label>
-                <input type="text" class="form-control" name="pacient" value="{{ $recipe->user->name }} {{ $recipe->user->patern }}" disabled>
+                <input type="text" class="input" name="pacient" value="{{ $recipe->user->name }} {{ $recipe->user->patern }}" disabled>
             </div>
 
             <div class="form-group">
                 <label >Medico</label>
-                <input type="text" class="form-control" name="pacient" value="{{ $recipe->medic->name }} {{ $recipe->medic->patern }}" disabled>
+                <input type="text" class="input" name="pacient" value="{{ $recipe->medic->name }} {{ $recipe->medic->patern }}" disabled>
             </div>
 
             <input type="hidden" value="{{ $recipe->id}}" id="1">
@@ -24,7 +24,10 @@
             {{ csrf_field() }}
 
             <h4>Descripción</h4>
-            <table class="table">
+
+            <p v-if="descriptions.length == 0">Esta receta aun no tiene ningun medicamento establecido</p>
+
+            <table class="table" v-if="descriptions.length != 0">
                     <thead>
                         <tr>
                             <th scope="col">Medicamento</th>
@@ -40,7 +43,7 @@
                             <td> @{{ desc.medicine }}</td>
                             <td> @{{ desc.frequency }}</td>
                             
-                            <td> <button v-on:click="deleteDesc(desc)" type="button" class="btn btn-warning btn-sm">Eliminar</button></td>
+                            <td> <button v-on:click="deleteDesc(desc)" type="button" class="button is-danger">Eliminar</button></td>
                             
                             
                         </tr>
@@ -52,20 +55,20 @@
 
                 <div class="form-group">
                     <label >Medicamento</label>
-                    <input type="text" class="form-control" name="pacient" v-model="description.medicine" required>
+                    <input type="text" class="input" name="pacient" v-model="description.medicine" required>
                 </div>
 
                 <div class="form-group">
                     <label >Frecuencia</label>
-                    <input type="text" class="form-control" name="pacient" v-model="description.frequency" required>
+                    <input type="text" class="input" name="pacient" v-model="description.frequency" required>
                 </div>
 
                 <div class="form-group">
                         <label >Contraindicaciones</label>
-                        <input type="text" class="form-control" name="pacient" v-model="description.contraindications">
+                        <input type="text" class="input" name="pacient" v-model="description.contraindications">
                     </div>
-
-                <button type="submit" class="btn btn-primary btn-lg btn-block">Agregar</button>
+                    <br>
+                <button type="submit" class="button is-success">Agregar</button>
 
                 </form>
 

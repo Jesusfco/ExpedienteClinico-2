@@ -47,6 +47,13 @@ class DatesController extends Controller
 
     }
 
+
+    public function show($id) {
+        $date = Date::find($id);
+        if($date == null) return 'Cita inexistente';
+        return view('app/citas/show')->with('date', $date);
+    }
+
     public function create() {
         return view('app/citas/create');
     }
@@ -69,13 +76,14 @@ class DatesController extends Controller
 
         $date->user_id = $re->user_id;
         $date->medic_id = $re->medic_id;
+        $date->subject = $re->subject;
         $date->date = $re->date;
         $date->hour = $re->hour;
         $date->room = $re->room;
 
         $date->save();
 
-        return redirect('/app/citas');
+        return redirect('/app/citas')->with('mjs', 'Cita Creada Correctamente');
 
     }
 

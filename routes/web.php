@@ -58,6 +58,8 @@ Route::post('app/recetas/create', 'RecipesController@store');
 Route::get('app/misCitas', 'PatientController@dates');
 Route::get('app/misRecetas', 'PatientController@recipes');
 Route::get('app/misRecetas/{id}', 'PatientController@pdfRecipe');
+Route::get('app/crearCita', 'PatientController@createDate');
+Route::post('app/crearCita', 'PatientController@storeDate');
 Route::get('app/misRecetas/{id}/accidente', 'PatientController@accidenteForm');
 Route::post('app/misRecetas/{id}/accidente', 'PatientController@storeObservation');
 

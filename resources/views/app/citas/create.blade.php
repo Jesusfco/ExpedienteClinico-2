@@ -1,20 +1,30 @@
 @extends('layouts.aplication')
-
+@section('title', 'Crear Citas Medicas') 
 @section('content')
 
 
-    <div class="panel-heading">Crear Usuario</div>
+    <h1>Crear Cita</h1>
 
     <div class="panel-body" id="app">
 
+        <div v-if="date.medic == null || date.pacient == null">
         <h5>Buscar Paciente/Medico</h5>
-        <input placeholder="Nombre" v-model="search.name">
-        <input placeholder="Apellido Paterno" v-model="search.patern">
-        <input placeholder="Apellido Materno" v-model="search.matern">
+        <div class="field">
+            <label>Nombre</label>
+            <input class="input" placeholder="Nombre" v-model="search.name">
+        </div>
+        {{-- <div class="field">
+            <label>Apellido Paterno</label>
+            <input class="input" placeholder="Apellido Paterno" v-model="search.patern">
+        </div>
+        <div class="field">
+            <label>Apellido Materno</label>
+            <input class="input" placeholder="Apellido Materno" v-model="search.matern">
+        </div> --}}
 
-        <button v-on:click="sugestUsers()">Buscar </button>
-
-        <table class="table">
+        <button class="button is-info" v-on:click="sugestUsers()">Buscar </button>
+        </div>
+        <table class="table" v-if="date.medic == null || date.pacient == null && sugest.lenght > 0">
             <thead>
                 <tr>
                     <th scope="col">#ID</th>
@@ -33,7 +43,7 @@
                 <td> @{{ sugest.patern }}</td>
                 <td> @{{ sugest.matern }}</td>
                 <td> @{{ sugest.type }}</td>
-                <td> <button v-on:click="selectUser(sugest)" type="button" class="btn btn-success btn-sm">Seleccionar</button></td>
+                <td> <button class="button is-link" v-on:click="selectUser(sugest)" type="button" class="btn btn-success btn-sm">Seleccionar</button></td>
                     
                     
                 </tr>
@@ -43,35 +53,41 @@
         <form  method="POST" action=""  onsubmit="return app.checkForm()">
             {{ csrf_field() }}
 
-            <input type="hidden" name="user_id" v-model="date.user_id">
+            <input  type="hidden" name="user_id" v-model="date.user_id">
             <input type="hidden" name="medic_id" v-model="date.medic_id">
 
-            <div class="form-group">
+            <div class="field">
                 <label >Paciente</label>
-                <input type="text" class="form-control" name="pacient" value="{{ old('pacient') }}" v-model="date.pacient" disabled>
+                <input type="text" class="input" name="pacient" value="{{ old('pacient') }}" v-model="date.pacient" disabled>
             </div>
 
-            <div class="form-group">
+            <div class="field">
                 <label >Medico</label>
-                <input type="text" class="form-control" name="medic" value="{{ old('medic') }}" v-model="date.medic" disabled>
+                <input type="text" class="input" name="medic" value="{{ old('medic') }}" v-model="date.medic" disabled>
             </div>
 
-            <div class="form-group">
+            <div class="field">
+                <label >Asunto:</label>
+                <input class="input" type="text"  name="subject" v-model="date.subject"  required>
+            </div>
+
+            <div class="field">
                 <label >Fecha</label>
-                <input type="date" class="form-control" name="date" value="{{ old('date') }}" v-model="date.date" required>
+                <input type="date" class="input" name="date" value="{{ old('date') }}" v-model="date.date" required>
             </div>
 
-            <div class="form-group">
+            <div class="field">
                 <label >Hora</label>
-                <input type="time" class="form-control" name="hour" value="{{ old('hour') }}" v-model="date.hour"  required>
+                <input type="time" class="input" name="hour" value="{{ old('hour') }}" v-model="date.hour"  required>
             </div>
 
-            <div class="form-group">
+            <div class="field">
                     <label >Consultorio:</label>
-                    <input type="text" class="form-control" name="room" v-model="date.room"  required>
+                    <input class="input" type="text"  name="room" v-model="date.room"  required>
                 </div>
 
-            <button type="submit" class="btn btn-primary btn-lg btn-block">Crear Usuario</button>
+            <button type="submit" class="button is-success">Crear Cita</button>
+            <button type="button" v-on:click="cancelForm()" class="button is-danger">Cancelar</button>
 
         </form>
 
@@ -103,7 +119,8 @@
                 medic_id: null,
                 date: null,
                 hour: null,
-                room: null
+                room: null,
+                subject: null,
             },
             
             search: {
@@ -165,8 +182,22 @@
                 }
             },
 
+            cancelForm: function() {
+                this.date = {
+                    pacient: null,
+                    medic: null,
+                    user_id: null,
+                    medic_id: null,
+                    date: null,
+                    hour: null,
+                    room: null,
+                    subject: null,
+                };
+            },
+
             checkForm: function() {
 
+// console.log(this.date);
                 let validate = true;
                 if(app.date.pacient == null) validate = false;
                 if(app.date.medic == null) validate = false;
@@ -180,10 +211,10 @@
 
                 if(d < now){ 
                     validate = false;
-                    console.log('FECHA IMPOSIBLE');
+                    alert('Coloque una fecha proxima a ocurrir')                
                 }
 
-
+                // return false;
                 return validate;
 
             }
