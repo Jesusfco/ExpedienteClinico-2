@@ -1,5 +1,6 @@
 @extends('layouts.visitor2')
 
+@section('title', 'Contactanos') 
 @section('content')
 
 <!-- Main --><br><br>

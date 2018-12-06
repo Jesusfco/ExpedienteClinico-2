@@ -13,6 +13,8 @@ class DatesController extends Controller
 
     public function __construct() {
         $this->middleware('Nurse');   
+
+        $this->middleware('admin', ['only' => ['deleteUser', 'createSalary']]); 
     }
 
     public function list(Request $re) {

@@ -21,21 +21,6 @@ class PatientController extends Controller
 
         $dates = Date::where('user_id', Auth::id())->get();
 
-        $users = User::where('user_type', 3)->get();
-
-        for($i = 0; $i < count($dates); $i++) {
-
-            foreach($users as $user) {
-
-                if($dates[$i]->medic_id == $user->id) {
-                    $dates[$i]->medic = $user->name . ' ' . $user->patern;
-                    break;
-                }
-
-            }   
-
-        }
-
         return view('app/patient/dates')->with('dates', $dates);
         
     }

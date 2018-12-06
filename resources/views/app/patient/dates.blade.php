@@ -17,6 +17,7 @@
                         <th scope="col">#ID</th>
                         
                         <th scope="col">Doctor</th>
+                        <th scope="col">Asunto</th>
                         <th scope="col">Fecha</th>
                         <th scope="col">Hora</th>
                         <th scope="col">Consultorio</th>
@@ -27,8 +28,12 @@
                     @foreach($dates as $cita)
                     <tr>
                         <th scope="row">{{ $cita->id }}</th>
-                        
-                        <td>{{ $cita->medic }}</td>                    
+                        @if( $cita->medic_id == NULL)
+                        <td>Sin Docto Asignado</td>                    
+                        @else
+                        <td>{{ $cita->medic->fullName() }}</td>
+                        @endif
+                        <td>{{ $cita->subject }}</td>
                         <td>{{ $cita->date }}</td>
                         <td>{{ $cita->hour }}</td>
                         <td>{{ $cita->room }}</td>

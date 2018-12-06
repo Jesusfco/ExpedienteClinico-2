@@ -1,5 +1,6 @@
 @extends('layouts.visitor2')
 
+@section('title', 'Login') 
 @section('content')
 
 <br><br>

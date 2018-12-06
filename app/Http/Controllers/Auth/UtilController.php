@@ -1,13 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Notification;
-use Auth;
+// use Auth;
 
-class NotificationsController extends Controller
+class UtilController extends Controller
 {
+    public function __construct() {
+        $this->middleware('Au');
+    }
+       
+
     public function get() {
         $auth = Auth::user();
 
@@ -27,5 +33,10 @@ class NotificationsController extends Controller
 
         return response()->json(true);
 
+    }
+
+    public function perfil() {
+        $user = Auth::user();
+        return view('app/perfil')-with('user', $user);
     }
 }

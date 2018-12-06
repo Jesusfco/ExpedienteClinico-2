@@ -50,7 +50,7 @@
         </ul>
 
         <div class="userDataInfo">
-            <p>{{ Auth::user()->fullName() }}</p>
+            <p><a href="{{ url('app/perfil') }}">{{Auth::user()->fullName() }}</a></p>
             <p>{{ Auth::user()->userTypeView()}}</p>
 
         </div>
