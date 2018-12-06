@@ -67,9 +67,9 @@ Route::post('app/crearCita', 'PatientController@storeDate');
 Route::get('app/misRecetas/{id}/accidente', 'PatientController@accidenteForm');
 Route::post('app/misRecetas/{id}/accidente', 'PatientController@storeObservation');
 
-Route::get('app/perfil', 'Auth\UtilController@perfil');
-Route::get('app/getNotifications', 'Auth\UtilController@get');
-Route::get('app/setReadNotifications', 'Auth\UtilController@setReadNotifications');
+Route::get('app/perfil', 'UtilController@perfil');
+Route::get('app/getNotifications', 'UtilController@get');
+Route::get('app/setReadNotifications', 'UtilController@setReadNotifications');
 
 Route::get('/', function () {
     return view('visitor/index');

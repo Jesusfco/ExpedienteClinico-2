@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+// use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Notification;
-// use Auth;
+use Auth;
 
 class UtilController extends Controller
 {
     public function __construct() {
-        $this->middleware('Au');
+        $this->middleware('Auth2');
     }
        
 
@@ -37,6 +37,7 @@ class UtilController extends Controller
 
     public function perfil() {
         $user = Auth::user();
-        return view('app/perfil')-with('user', $user);
+        
+        return view('app/perfil')->with('user', $user);
     }
 }

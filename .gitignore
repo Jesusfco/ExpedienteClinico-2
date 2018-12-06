@@ -9,3 +9,5 @@ Homestead.yaml
 *.zip
 *.rar
 *.rar
+
+/public/images/QRLinks/*

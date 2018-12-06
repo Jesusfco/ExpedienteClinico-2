@@ -29,8 +29,8 @@
                     @foreach($dates as $cita)
                     <tr>
                         <th scope="row">{{ $cita->id }}</th>
-                        <td>{{ $cita->user }}</td>
-                        <td>{{ $cita->medic }}</td>                    
+                        <td>{{ $cita->user->fullName() }}</td>
+                        <td>{{ $cita->medic->fullName() }}</td>                    
                         <td>{{ $cita->subject }}</td>
                         <td>{{ $cita->date }}</td>
                         <td>{{ $cita->hour }}</td>

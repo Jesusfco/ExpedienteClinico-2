@@ -25,26 +25,11 @@ class PatientController extends Controller
         
     }
 
-    public function recipes(){
-
-        $users = User::where('user_type', 3)->get();
+    public function recipes(){        
 
         $recipes = Recipe::where('user_id', Auth::id())->get();
 
-        for($i = 0; $i < count($recipes); $i++) {
-
-            foreach($users as $user) {
-
-                if($recipes[$i]->medic_id == $user->id) {
-                    $recipes[$i]->medic = $user->name . ' ' . $user->patern;
-                    break;
-                }
-
-            }
-            
-
-        }
-
+       
         return view('app/patient/recipes')->with('recipes', $recipes);
     }
 

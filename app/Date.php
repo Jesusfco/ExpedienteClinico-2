@@ -13,7 +13,11 @@ class Date extends Model
 
     public function medic()
     {
-        return $this->hasOne('App\User', 'id', 'medic_id');
+        return $this->hasOne('App\User', 'id', 'medic_id')->withDefault(function ($user) {
+            $user->name = 'Sin Medico Asignado';
+            $user->patern = '';
+            // $user->matern = '';
+        });
     }
 
     public function user()

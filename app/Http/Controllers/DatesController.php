@@ -7,6 +7,7 @@ use App\Date;
 use App\User;
 use App\Notification;
 use QRCode;
+use Auth;
 
 class DatesController extends Controller
 {
@@ -21,30 +22,14 @@ class DatesController extends Controller
 
         $users = User::all();
 
-        $dates = Date::orderBy('date', 'DESC')->paginate(20);
-
-        for($i = 0; $i < count($dates); $i++) {
-
-            foreach($users as $user) {
-
-                if($dates[$i]->user_id == $user->id) {
-                    $dates[$i]->user = $user->name . ' ' . $user->patern;
-                    break;
-                }
-
-            }
-
-            foreach($users as $user) {
-
-                if($dates[$i]->medic_id == $user->id) {
-                    $dates[$i]->medic = $user->name . ' ' . $user->patern;
-                    break;
-                }
-
-            }
-            
-
+        if(Auth::user()->user_type == 3) {
+            $dates = Date::where('medic_id', Auth::id())->orderBy('date', 'DESC')->paginate(20);                          
+        } else if(Auth::user()->user_type == 4) {
+            $dates = Date::orderBy('date', 'DESC')->paginate(20);                          
+        } else {
+            return 'No estas autorizado para Ver esto';
         }
+        
 
         return view('app/citas/list')->with('dates', $dates);
 

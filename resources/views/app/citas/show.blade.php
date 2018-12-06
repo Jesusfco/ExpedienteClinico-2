@@ -4,6 +4,8 @@
 
 <h1>Ver Cita #{{$date->id}}</h1>
 
+<p><a href="{{ url('app/citas') }}">Citas</a > >> Ver Cita</p>
+
     <div class="container is-desktop" >
 
         

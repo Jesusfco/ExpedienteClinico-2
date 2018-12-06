@@ -34,13 +34,18 @@
                 <li><a href="{{ url('app/misRecetas')}}">MIS RECETAS</a></li>
             @endif
 
-            @if(Auth::user()->user_type > 2)
+            @if(Auth::user()->user_type == 2)
                 <li><a href="{{ url('app/citas')}}">Citas</a></li>
                 <li><a href="{{ url('app/users')}}">Usuarios</a></li>                            
                 <li><a href="{{ url('app/recetas')}}">Recetas</a></li>
             @endif
 
-            @if(Auth::user()->user_type == 2)
+            @if(Auth::user()->user_type == 3)
+                <li><a href="{{ url('app/citas')}}">Citas</a></li>
+                <li><a href="{{ url('app/users')}}">Usuarios</a></li> 
+            @endif
+
+            @if(Auth::user()->user_type == 4)
                 <li><a href="{{ url('app/citas')}}">Citas</a></li>
                 <li><a href="{{ url('app/users')}}">Usuarios</a></li> 
             @endif
@@ -50,8 +55,8 @@
         </ul>
 
         <div class="userDataInfo">
-            <p><a href="{{ url('app/perfil') }}">{{Auth::user()->fullName() }}</a></p>
-            <p>{{ Auth::user()->userTypeView()}}</p>
+            <a href="{{ url('app/perfil') }}"><p>{{Auth::user()->fullName() }}</p></a>
+            <p class="type">{{ Auth::user()->userTypeView()}}</p>
 
         </div>
     </div>
