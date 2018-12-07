@@ -2,12 +2,15 @@
 
 @section('content')
 <!-- Banner -->
+<!-- Main -->
+<!-- Banner -->
 <section id="banner">
-	<h2>TecnoMedics</h2>
+                	
+	<h2><img src="{{url('img/logo.png')}}" width="520" height="342"></h2>
 	<p>Revolucionando tu salud.</p>
 	<ul class="actions special">
-		<li><a href="login" class="button primary">Iniciar sesion</a></li>
-		<li><a href="#" class="button">Registrarse</a></li>
+		<li><a href="#" class="button primary">Iniciar sesion</a></li>
+		
 	</ul>
 </section>
 
@@ -16,37 +19,35 @@
 
 	<section class="box special">
 		<header class="major">
-			<h2>Servir es un privilegio, servir bien, es una obligacion <br />
-			Buscando atender las necesidades de la sociedad</h2>
-			<p>Blandit varius ut praesent nascetur eu penatibus nisi risus faucibus nunc ornare<br />
-			adipiscing nunc adipiscing. Condimentum turpis massa.</p>
+			<h2>Diariamente nos enforzamos por ser mejores para ti</h2>
+			<p>Asumimos el compromiso de proporcionar atención médica integral, efectiva y segura con pleno respeto a su persona, atentos siempre a nuestro código de ética y valores, que contribuya al bienestar, a la vida plena y a incrementar su potencial creativo y labora​l.</p>
 		</header>
-		<span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
+		<img src="images/pic01.jpg" width="100%">
 	</section>
 
 	<section class="box special features">
 		<div class="features-row">
 			<section>
 				<span class="icon major fa-bolt accent2"></span>
-				<h3>Magna etiam</h3>
-				<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
+				<h3>Servicio Eficaz</h3>
+				<p>Asigna citas de manera facil y rapida.</p>
 			</section>
 			<section>
 				<span class="icon major fa-area-chart accent3"></span>
-				<h3>Ipsum dolor</h3>
-				<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
+				<h3>Lleva registro de tus citas</h3>
+				<p>&nbsp;</p>
 			</section>
 		</div>
 		<div class="features-row">
 			<section>
 				<span class="icon major fa-cloud accent4"></span>
-				<h3>Sed feugiat</h3>
-				<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
+				<h3>Respaldo de datos</h3>
+				<p>Almacena tus datos y vizualiza tu calendario de eventos</p>
 			</section>
 			<section>
 				<span class="icon major fa-lock accent5"></span>
-				<h3>Enim phasellus</h3>
-				<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
+				<h3>Seguridad de datos</h3>
+				<p>Protegemos tus datos y garantizamos tu seguridad</p>
 			</section>
 		</div>
 	</section>
@@ -55,11 +56,12 @@
 		<div class="col-6 col-12-narrower">
 
 			<section class="box special">
-				<span class="image featured"><img src="images/pic05.jpg" alt="" /></span>
-			  <h3>Sed lorem adipiscing</h3>
-				<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
+				<img src="images/pic05.jpg" width="100%">
+			  <h3>ESPACIO PARA MÉDICOS</h3>
+				<p>Eventos, congresos y cursos para especialistas, investigación y sesiones generales.</p>
+				 <p align="justify">Al formar parte de este grupo, cada uno de los integrantes se compromete a brindar calidez, respeto y atención en la práctica médica, además de participar en la enseñanza y difusión de la ciencia médica.</p>
 				<ul class="actions special">
-					<li><a href="#" class="button alt">Learn More</a></li>
+				  <li><a href="#" class="button alt">Leer mas</a></li>
 				</ul>
 		  </section>
 
@@ -67,11 +69,12 @@
 		<div class="col-6 col-12-narrower">
 
 			<section class="box special">
-				<span class="image featured"><img src="images/pic04.jpg" alt="" /></span>
-			  <h3>Accumsan integer</h3>
-				<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
+				<img src="images/pic04.jpg" width="100%">
+			  <h3>ESPACIO PARA PACIENTES</h3>
+				<p>Información de interes para pacientes y familiares.</p>
+				<p align="justify">Esta sección ha sido diseñada para proporcionarle respuestas claras y precisas a su preguntas sobre el cuidado de la salud. Se han incluido estudios amplios de las principales enfermedades, así como información relativa  a otros padecimientos y problemas fisícos de menor importancia y cómo tratarlos.</p>
 				<ul class="actions special">
-					<li><a href="#" class="button alt">Learn More</a></li>
+					<li><a href="#" class="button alt">Leer mas</a></li>
 				</ul>
 			</section>
 
@@ -80,24 +83,6 @@
 
 </section>
 
-<!-- CTA -->
-<section id="cta">
-
-	<h2>Sign up for beta access</h2>
-	<p>Blandit varius ut praesent nascetur eu penatibus nisi risus faucibus nunc.</p>
-
-	<form>
-		<div class="row gtr-50 gtr-uniform">
-			<div class="col-8 col-12-mobilep">
-				<input type="email" name="email" id="email" placeholder="Email Address" />
-			</div>
-			<div class="col-4 col-12-mobilep">
-				<input type="submit" value="Sign Up" class="fit" />
-			</div>
-		</div>
-	</form>
-
-</section>
 
 
 @endsection				

@@ -15,7 +15,7 @@
                     
 
                         <header id="header" class="alt">
-                            <h1><a href="/">TECNOMEDICS</a> Revolucionando tu salud</h1>
+                            <h1><a href="/">TECNOMEDICS</a>  Revolucionando tu salud</h1>
                             <nav id="nav">
                                 <ul>
                                     <li><a href="/">INICIO</a></li>
@@ -24,9 +24,7 @@
                                         <ul>
                                             <li><a href="quienes">Quienes Somos</a></li>
                                             <li><a href="contacto">Contacto</a></li>
-                                            <li><a href="especialidades">Especialidades</a></li>
-                                            <li>
-                                                <a href="ubicacion">Ubicación</a>
+                                            
                                                 {{-- <ul>
                                                     <li><a href="#">Option One</a></li>
                                                     <li><a href="#">Option Two</a></li>

@@ -12,7 +12,7 @@
 
                     <!-- Header -->
                     <header id="header" >
-                            <h1><a href="{{url('/')}}">TECNOMEDICS</a> Revolucionando tu salud</h1>
+                            <h1><a href="{{url('/')}}">TECNOMEDICS</a>  Revolucionando tu salud</h1>
                             <nav id="nav">
                                 <ul>
                                     <li><a href="{{ url('/')}}">INICIO</a></li>

@@ -6,8 +6,8 @@
 <!-- Main --><br><br>
 <section id="main" class="container medium">
 	<header>
-		<h2>Contactanos</h2>
-		<p>Hablanos acerca de lo que  piensas de nosotros</p>
+		<h2>Contáctanos</h2>
+		<p>Háblanos acerca de lo que piensas de nosotros</p>
 	</header>
 	<div class="box">
 		<form method="post" action="#">
