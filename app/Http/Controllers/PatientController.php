@@ -55,7 +55,7 @@ class PatientController extends Controller
         $notification->title = 'Nueva Cita';
         $notification->description = 'Esta cita aun no tiene un medico asignado';
         $notification->type = 1;
-        $notification->url = 'app/citas/show/' . $date->id;
+        $notification->url = 'app/citas/edit/' . $date->id;
         $notification->save();
 
         return redirect('/app/misCitas')->with('mjs', 'Cita Creada Correctamente');
