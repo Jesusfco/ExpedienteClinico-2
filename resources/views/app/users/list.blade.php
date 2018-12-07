@@ -55,7 +55,7 @@
 
                         @if($user->user_type == 1)
                             <a href="{{ url('app/users/PDF' , $user->id ) }}" target="_blank"><button type="button" class="button is-link">Expediente</button></a>
-                            <a href="{{ url('app/users/alergias/' . $user->id ) }}"><button type="button" class="button">Alergias</button></a>
+                            
                         @endif
                             @if(Auth::user()->user_type >= 3 )
 

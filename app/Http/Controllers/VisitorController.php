@@ -19,10 +19,9 @@ class VisitorController extends Controller
 
         if (Auth::check()) {
 
-            if(Auth::user()->user_type > 2) {
+            if(Auth::user()->user_type >= 2) {
                 return redirect('/app/users');
-            } else if(Auth::user()->user_type == 2) {
-                return redirect('/app/citas');
+            
             }else {
                 return redirect('/app/misCitas');
             }

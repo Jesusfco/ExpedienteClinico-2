@@ -8,14 +8,14 @@ use App\User;
 use App\Notification;
 use QRCode;
 use Auth;
-
+use DB;
 class DatesController extends Controller
 {
 
     public function __construct() {
-        $this->middleware('Nurse');   
+        $this->middleware('Doctor');   
 
-        $this->middleware('admin', ['only' => ['deleteUser', 'createSalary']]); 
+        $this->middleware('Admin', ['only' => ['store', 'create', 'edit', 'update']]); 
     }
 
     public function list(Request $re) {
@@ -39,7 +39,20 @@ class DatesController extends Controller
 
     public function show($id) {
         $date = Date::find($id);
+
         if($date == null) return 'Cita inexistente';
+
+        if(Auth::user()->user_type == 3) {
+
+            if($date->medic_id != Auth::id()) {
+
+                return redirect('app/citas');
+
+            }
+
+        }
+        
+        
         return view('app/citas/show')->with('date', $date);
     }
 
@@ -49,9 +62,8 @@ class DatesController extends Controller
 
     public function sugest(Request $re) {
         $users = User::orderBy('name', 'ASC')->where([
-            ['name', 'LIKE', '%' . $re->name . '%'],
-            ['patern', 'LIKE', '%' . $re->patern . '%'],
-            ['matern', 'LIKE', '%' . $re->matern . '%'],
+            [DB::raw("CONCAT(`name`, ' ', `patern`, ' ', `matern`)"), 'LIKE', '%' . $re->name . '%'],
+            
             // ['user_type', 1],
             // ['user_type', 3],
             ])->limit(7)->get();
@@ -61,10 +73,8 @@ class DatesController extends Controller
 
     public function sugestMedic(Request $re) {
         $users = User::orderBy('name', 'ASC')->where([
-            ['name', 'LIKE', '%' . $re->name . '%'],
-            ['patern', 'LIKE', '%' . $re->patern . '%'],
-            ['matern', 'LIKE', '%' . $re->matern . '%'],
-            // ['user_type', 1],
+            [DB::raw("CONCAT(`name`, ' ', `patern`, ' ', `matern`)"), 'LIKE', '%' . $re->name . '%'],
+                        
             ['user_type', 3],
             ])->limit(7)->get();
 

@@ -18,8 +18,12 @@
         <li class="is-active"><a href="{{ url('app/users/edit/usuario', $user->id) }}">Usuario</a></li>
         <li><a href="{{ url('app/users/edit/direccion', $user->id) }}">Dirección</a></li>
         <li><a href="{{ url('app/users/edit/personal', $user->id) }}">Datos Personales</a></li>
+        @if($user->user_type == 1)
+        <li><a href="{{ url('app/users/alergias/' . $user->id ) }}">Alergias</a></li>
         <li><a href="{{ url('app/users/edit/expediente', $user->id) }}">Expediente</a></li>
         <li><a href="{{ url('app/users/edit/nacimiento', $user->id) }}">Expediente de nacimiento</a></li>
+
+        @endif
 
     </ul>
 </div>

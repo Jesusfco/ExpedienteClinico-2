@@ -35,7 +35,7 @@
                 <td> @{{ sugest.name }}</td>
                 <td> @{{ sugest.patern }}</td>
                 <td> @{{ sugest.matern }}</td>
-                <td> <button v-on:click="selectUser(sugest)" type="button" class="btn btn-success btn-sm">Seleccionar</button></td>
+                <td> <button class="button is-link" v-on:click="selectUser(sugest)" type="button" class="btn btn-success btn-sm">Seleccionar</button></td>
                     
                     
                 </tr>

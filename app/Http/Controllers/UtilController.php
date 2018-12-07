@@ -19,6 +19,7 @@ class UtilController extends Controller
 
         $notifications = Notification::where('user_id', $auth->id)
         ->orWhere('user_type', $auth->user_type)
+        ->orderBy('id', 'desc')
         ->limit(30)->get();
 
         return response()->json($notifications);

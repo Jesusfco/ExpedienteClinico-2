@@ -15,6 +15,7 @@ use App\Expedient;
 use App\Weight;
 use Auth;
 use PDF;
+use DB;
 
 class UsersController extends Controller {
 
@@ -25,10 +26,11 @@ class UsersController extends Controller {
     public function list(Request $re) {
 
         if(Auth::user()->user_type < 4) {   
-            $users = User::orderBy('name', 'ASC')->where([['name', 'LIKE', '%' . $re->search . '%'],['user_type', 1]])->paginate(15);
+            // $users = User::orderBy('name', 'ASC')->where([['name', 'LIKE', '%' . $re->search . '%'],['user_type', 1]])->paginate(15);
+            $users = User::orderBy('name', 'ASC')->where(DB::raw("CONCAT(`name`, ' ', `patern`, ' ', `matern`)"), 'LIKE', '%' . $re->search . '%')->paginate(15);
 
         } else {
-            $users = User::orderBy('name', 'ASC')->where('name', 'LIKE', '%' . $re->search . '%')->paginate(15);
+            $users = User::orderBy('name', 'ASC')->where(DB::raw("CONCAT(`name`, ' ', `patern`, ' ', `matern`)"), 'LIKE', '%' . $re->search . '%')->paginate(15);
         }
         
 
@@ -99,8 +101,19 @@ class UsersController extends Controller {
     }
 
     public function  editUsuario($id) {
-        
-        $user = User::find($id);        
+
+        $credential = Auth::user()->user_type;
+        $user = User::find($id);      
+
+        if($credential == 3 || $credential == 2) {
+
+            if($user->user_type != 1) {
+
+                return redirect('app/users');
+            }
+
+        }
+
         return view('app/users/edit')->with('user', $user);
 
     } 

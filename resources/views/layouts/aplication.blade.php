@@ -34,15 +34,15 @@
                 <li><a href="{{ url('app/misRecetas')}}">MIS RECETAS</a></li>
             @endif
 
-            @if(Auth::user()->user_type == 2)
-                <li><a href="{{ url('app/citas')}}">Citas</a></li>
+            @if(Auth::user()->user_type == 2)                
                 <li><a href="{{ url('app/users')}}">Usuarios</a></li>                            
                 <li><a href="{{ url('app/recetas')}}">Recetas</a></li>
             @endif
 
             @if(Auth::user()->user_type == 3)
-                <li><a href="{{ url('app/citas')}}">Citas</a></li>
+                <li><a href="{{ url('app/citas')}}">Mis Citas</a></li>
                 <li><a href="{{ url('app/users')}}">Usuarios</a></li> 
+                <li><a href="{{ url('app/recetas')}}">Recetas</a></li>
             @endif
 
             @if(Auth::user()->user_type == 4)

@@ -44,8 +44,10 @@
                             <td>
                                 <a href="{{ url('app/recetas/show/' . $re->id ) }}"><button type="button" class="button is-success">Ver</button></a>
                                 <a href="{{ url('app/recetas/PDF/' . $re->id ) }}"><button type="button" class="button is-warning">PDF</button></a>
+                                @if(Auth::user()->user_type == 3)
                                 <a href="{{ url('app/recetas/crearDescription/' . $re->id ) }}"><button type="button" class="button is-info">Editar</button></a>
                                 <a href="{{ url('app/recetas/delete/' . $re->id ) }}"><button type="button" class="button is-danger">Eliminar</button></a>
+                                @endif
                                     
                             </td>
                         </tr>

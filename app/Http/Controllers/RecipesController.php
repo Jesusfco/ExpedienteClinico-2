@@ -9,12 +9,14 @@ use App\User;
 use App\RecipeDescription;
 use PDF;
 use QRCode;
+use DB;
 
 class RecipesController extends Controller
 {
 
     public function __construct() {
-        $this->middleware('Doctor');   
+        $this->middleware('Nurse');   
+        $this->middleware('Doctor', ['only' => ['store', 'create', 'edit', 'update', 'delete']]); 
     }
     
     public function list(){
@@ -56,9 +58,8 @@ class RecipesController extends Controller
 
     public function sugest(Request $re) {
         $users = User::orderBy('name', 'ASC')->where([
-            ['name', 'LIKE', '%' . $re->name . '%'],
-            ['patern', 'LIKE', '%' . $re->patern . '%'],
-            ['matern', 'LIKE', '%' . $re->matern . '%'],
+            [DB::raw("CONCAT(`name`, ' ', `patern`, ' ', `matern`)"), 'LIKE', '%' . $re->name . '%'],
+            
             ['user_type', 1],
             // ['user_type', 3],
             ])->limit(7)->get();
