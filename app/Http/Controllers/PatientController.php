@@ -77,11 +77,7 @@ class PatientController extends Controller
     }
 
     public function accidenteForm($id) {
-        $recipe = Recipe::find($id);
-        $recipe->user = User::find($recipe->user_id);
-        $recipe->medic = User::find($recipe->medic_id);
-        $recipe->description;
-
+        $recipe = Recipe::find($id);                
         return view('app/patient/problemRecipe')->with('recipe', $recipe);
     }
     public function storeObservation(Request $re, $id){
