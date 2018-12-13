@@ -141,7 +141,7 @@
 <br><br><br><br><br><br>
         
 
-        <img class="qr" src="{{ url('images/QRLinks/'. $recipe->id . '.png') }}">
+        <img class="qr" src="{{ url('images/QR/'. $recipe->id . '.png') }}">
         <p  class="centerText"><span class="negritas">Fecha de expedición: </span>{{ date('d / m / Y', strtotime($recipe->created_at))  }}</p>
 </body>
 </html>

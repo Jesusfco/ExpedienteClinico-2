@@ -118,6 +118,19 @@ class UsersController extends Controller {
 
     } 
 
+    public function delete($id) { 
+        $user = User::find($id);
+        Address::find($user->address_id)->delete();
+        PersonalData::find($user->personal_data_id)->delete();
+        MedicalData::find($user->medical_data_id)->delete();
+        Expedient::find($user->expedient_id)->delete();
+        BornExpedient::find($user->born_expedient_id)->delete();
+        Allergy::where('user_id', $id)->delete();
+        Weight::where('user_id', $id)->delete();
+        $user->delete();
+        return back();
+    }
+
     public function updateUsuario(Request $r, $id) {
 
         $this->validate($r, [

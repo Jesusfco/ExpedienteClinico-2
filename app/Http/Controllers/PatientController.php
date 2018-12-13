@@ -9,6 +9,7 @@ use App\Date;
 use App\User;
 use App\Notification;
 use PDF;
+use QRCode;
 
 class PatientController extends Controller
 {
@@ -63,12 +64,14 @@ class PatientController extends Controller
     }
 
     public function pdfRecipe($id){
-        $recipe = Recipe::find($id);
-        $recipe->user = User::find($recipe->user_id);
-        $recipe->medic = User::find($recipe->medic_id);
-        $recipe->description;
+        $recipe = Recipe::find($id);        
 
-        // return view('app/pdf/receta')->with('recipe', $recipe);
+        QRCode::text(url('aplicacion/verificarReceta', $id))
+        ->setSize(4)
+        ->setMargin(2)
+        ->setOutfile('images/QR/'. $id . '.png')
+        ->png();      
+
         $pdf = PDF::loadView('app/pdf/receta', ['recipe' => $recipe] );
         return $pdf->stream('receta #'. $recipe->id . '.pdf');  
     }

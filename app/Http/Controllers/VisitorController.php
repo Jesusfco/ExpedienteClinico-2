@@ -44,10 +44,10 @@ class VisitorController extends Controller
      
 
             QRCode::text(url('aplicacion/verificarReceta', $id))
-                ->setSize(4)
-                ->setMargin(2)
-                ->setOutfile('images/QRLinks/'. $id . '.png')
-                ->png();        
+        ->setSize(4)
+        ->setMargin(2)
+        ->setOutfile('images/QR/'. $id . '.png')
+        ->png();            
 
         // return view('app/pdf/receta')->with('recipe', $recipe);
         $pdf = PDF::loadView('app/pdf/receta', ['recipe' => $recipe] );

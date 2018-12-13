@@ -99,14 +99,7 @@
 
         data: {
             
-            // user_type: {{ $user->user_type}},
-            // cedula: null,
-            // blood_type: "{{$user->born->blood_type }}",
-            // sub_speciality: null,
-            // // gender: {{ $user->gender }},
-            // llanto_inmediato: {{ $user->born->llanto_inmediato }},
-            // tipo_nacimiento: {{$user->born->tipo_nacimiento }},
-            // sangre_criogena_cordon: {{ $user->born->sangre_criogena_cordon }},                       
+                             
 
         
         });

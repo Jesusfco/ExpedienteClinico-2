@@ -113,18 +113,12 @@ class RecipesController extends Controller
     }
 
     public function show($id) {
-        $recipe = Recipe::find($id);
-        $recipe->user = User::find($recipe->user_id);
-        $recipe->medic = User::find($recipe->medic_id);
-        $recipe->description;
+        $recipe = Recipe::find($id);        
         return view('app/recetas/show')->with('recipe', $recipe);
     }
 
     public function getPDF($id) {
-        $recipe = Recipe::find($id);
-        $recipe->user = User::find($recipe->user_id);
-        $recipe->medic = User::find($recipe->medic_id);
-        $recipe->description;
+        $recipe = Recipe::find($id);        
 
         QRCode::text(url('aplicacion/verificarReceta', $id))
         ->setSize(4)

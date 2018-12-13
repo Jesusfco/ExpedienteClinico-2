@@ -30,6 +30,8 @@ Route::post('app/users/edit/personal/{id}', 'UsersController@updatePersonal');
 Route::get('app/users/edit/expediente/{id}', 'UsersController@editExpediente');
 Route::post('app/users/edit/expediente/{id}', 'UsersController@updateExpediente');
 
+Route::get('app/users/delete/{id}', 'UsersController@delete');
+
 Route::get('app/users/edit/nacimiento/{id}', 'UsersController@editNacimiento');
 Route::post('app/users/edit/nacimiento/{id}', 'UsersController@updateNacimiento');
 

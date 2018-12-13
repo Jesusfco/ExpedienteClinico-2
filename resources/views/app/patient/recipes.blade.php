@@ -28,7 +28,7 @@
                         <tr>
                             <th scope="row">{{ $re->id }}</th>
                             
-                            <td>{{ $re->medic }}</td>                    
+                            <td>{{ $re->medic->fullName() }}</td>                    
                             <td>{{ $re->created_at }}</td>
                             @if($re->observation == NULL)
                             <td>No</td>

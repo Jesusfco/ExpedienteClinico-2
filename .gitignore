@@ -11,3 +11,4 @@ Homestead.yaml
 *.rar
 
 /public/images/QRLinks/*
+*.sql

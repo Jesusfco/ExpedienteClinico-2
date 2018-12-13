@@ -45,7 +45,10 @@ class User extends Authenticatable
 
     public function medical()
     {
-        return $this->hasOne('App\MedicalData', 'id', 'medical_data_id');
+        return $this->hasOne('App\MedicalData', 'id', 'medical_data_id')->withDefault(function ($medical) {
+            $medical->id = '';            
+        });
+    
     }
 
     public function expedient()
@@ -67,6 +70,8 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Weight', 'user_id', 'id');
     }
+
+    
 
     public function userTypeView() {
         if($this->user_type == 1) {
