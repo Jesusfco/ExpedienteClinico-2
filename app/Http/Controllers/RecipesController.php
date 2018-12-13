@@ -78,9 +78,7 @@ class RecipesController extends Controller
 
     public function description($id) {
 
-        $recipe = Recipe::find($id);
-        $recipe->user = User::find($recipe->user_id);
-        $recipe->medic = User::find($recipe->medic_id);
+        $recipe = Recipe::find($id);        
 
         
         return view('app/recetas/adminDescription')->with('recipe', $recipe);
@@ -123,7 +121,7 @@ class RecipesController extends Controller
         QRCode::text(url('aplicacion/verificarReceta', $id))
         ->setSize(4)
         ->setMargin(2)
-        ->setOutfile('images/QRLinks/'. $id . '.png')
+        ->setOutfile('images/QR/'. $id . '.png')
         ->png();      
         // return view('app/pdf/receta')->with('recipe', $recipe);
         $pdf = PDF::loadView('app/pdf/receta', ['recipe' => $recipe] );
