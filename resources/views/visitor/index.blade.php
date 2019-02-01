@@ -9,7 +9,7 @@
 	<h2><img src="{{url('img/logo.png')}}" width="520" height="342"></h2>
 	<p>Revolucionando tu salud.</p>
 	<ul class="actions special">
-		<li><a href="#" class="button primary">Iniciar sesion</a></li>
+		<li><a href="login" class="button primary">Iniciar sesion</a></li>
 		
 	</ul>
 </section>
